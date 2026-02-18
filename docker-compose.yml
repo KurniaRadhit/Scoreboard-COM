@@ -1,0 +1,23 @@
+services:
+  clash-of-minds:
+    build: .
+    container_name: clash-of-minds
+    restart: unless-stopped
+    ports:
+      - "7525:7525"
+    volumes:
+      - clash_data:/app/data
+    environment:
+      - PORT=7525
+      - ADMIN_PASSWORD=V3ncobolt!
+      - SESSION_SECRET=clash-super-secret-change-me-2026
+      - DB_PATH=/app/data/clash.db
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:7525/api/participants"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+volumes:
+  clash_data:
+    driver: local
