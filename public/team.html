@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clash of Minds — Team Leaderboard</title>
+  <link rel="icon" type="image/png" href="logo.png">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Rajdhani:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --cyan: #00e5ff;
+      --neon2: #7df9ff;
+      --blue: #1565c0;
+      --dark: #020c18;
+      --dark2: #041224;
+      --panel: rgba(4, 22, 44, 0.92);
+      --border: rgba(0, 229, 255, 0.3);
+      --border-bright: rgba(0, 229, 255, 0.7);
+      --text: #cceeff;
+      --text2: #7bbdd4;
+      --red: #ff3366;
+      --green: #00ff88;
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family:'Rajdhani',sans-serif; background:var(--dark); color:var(--text); min-height:100vh; overflow-x:hidden; }
+    body::before {
+      content:''; position:fixed; inset:0; z-index:0;
+      background: radial-gradient(ellipse 80% 60% at 20% 10%, rgba(0,100,200,0.18) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 50% at 80% 80%, rgba(0,200,255,0.12) 0%, transparent 60%),
+        linear-gradient(180deg,#020c18 0%,#041224 50%,#020c18 100%);
+    }
+    .grid-bg { position:fixed; inset:0; z-index:0; pointer-events:none; background-image: linear-gradient(rgba(0,229,255,0.04) 1px,transparent 1px), linear-gradient(90deg,rgba(0,229,255,0.04) 1px,transparent 1px); background-size:40px 40px; animation:gridMove 20s linear infinite; }
+    @keyframes gridMove { to { transform:translateY(40px); } }
+    .scanlines { position:fixed; inset:0; z-index:1; pointer-events:none; opacity:0.015; background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,229,255,1) 2px,rgba(0,229,255,1) 3px); }
+    .particle { position:fixed; border-radius:50%; pointer-events:none; z-index:0; }
+    nav { position:relative; z-index:100; display:flex; align-items:center; justify-content:space-between; padding:14px 24px; background:rgba(2,12,24,0.9); border-bottom:1px solid var(--border); backdrop-filter:blur(12px); }
+    .nav-logo { font-family:'Orbitron',monospace; font-size:1.1rem; font-weight:900; background:linear-gradient(90deg,var(--cyan),var(--neon2)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; filter:drop-shadow(0 0 8px var(--cyan)); letter-spacing:2px; }
+    .nav-right { display:flex; align-items:center; gap:12px; }
+    .nav-badge { font-size:0.6rem; padding:4px 10px; background:rgba(0,229,255,0.12); border:1px solid var(--border); border-radius:2px; color:var(--text2); font-family:'Share Tech Mono'; display:flex; align-items:center; gap:6px; transition:all 0.2s; }
+    .nav-link { font-size:0.6rem; padding:4px 10px; background:rgba(0,229,255,0.08); border:1px solid rgba(0,229,255,0.25); border-radius:2px; color:var(--text2); font-family:'Share Tech Mono'; text-decoration:none; transition:all 0.2s; }
+    .nav-link:hover { border-color:var(--cyan); color:var(--cyan); background:rgba(0,229,255,0.15); }
+    .live-dot { width:6px; height:6px; background:var(--green); border-radius:50%; animation:pulse 1.5s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1;box-shadow:0 0 4px var(--green);} 50%{opacity:0.5;box-shadow:none;} }
+    .lb-wrapper { max-width:860px; margin:0 auto; padding:28px 16px 60px; position:relative; z-index:10; }
+    .lb-header { text-align:center; margin-bottom:28px; }
+    .lb-title { font-family:'Orbitron',monospace; font-size:2.2rem; font-weight:900; background:linear-gradient(90deg,var(--neon2),var(--cyan),var(--neon2)); background-size:200%; -webkit-background-clip:text; -webkit-text-fill-color:transparent; animation:shimmer 3s linear infinite; filter:drop-shadow(0 0 20px var(--cyan)); letter-spacing:4px; }
+    @keyframes shimmer { 0%{background-position:0%} 100%{background-position:200%} }
+    .lb-sub { font-family:'Share Tech Mono'; font-size:0.75rem; color:var(--text2); letter-spacing:3px; margin-top:6px; }
+    .lb-divider { width:200px; height:1px; margin:14px auto 0; background:linear-gradient(90deg,transparent,var(--cyan),transparent); }
+    .lb-search { display:flex; gap:10px; margin-bottom:16px; background:var(--panel); border:1px solid var(--border); padding:10px 16px; align-items:center; }
+    .lb-search input { flex:1; background:transparent; border:none; outline:none; font-family:'Rajdhani'; font-size:1rem; color:var(--text); caret-color:var(--cyan); }
+    .lb-search input::placeholder { color:var(--text2); }
+    .lb-search svg { color:var(--cyan); flex-shrink:0; }
+    .lb-table-wrap { background:var(--panel); border:1px solid var(--border); overflow:hidden; }
+    .lb-table-head { display:grid; grid-template-columns:48px 1fr 80px 72px; padding:10px 16px; background:rgba(0,229,255,0.07); border-bottom:1px solid var(--border); font-family:'Orbitron',monospace; font-size:0.58rem; letter-spacing:2px; color:var(--cyan); text-transform:uppercase; }
+    .lb-row { display:grid; grid-template-columns:48px 1fr 80px 72px; padding:13px 16px; border-bottom:1px solid rgba(0,229,255,0.06); align-items:center; transition:background 0.2s; will-change:transform; position:relative; }
+    .lb-row:hover { background:rgba(0,229,255,0.05); }
+    .lb-row:last-child { border-bottom:none; }
+    .lb-row.rank-up { animation:rankUpFlash 0.7s ease both; }
+    @keyframes rankUpFlash { 0%{background:rgba(0,255,136,0.18);box-shadow:inset 0 0 20px rgba(0,255,136,0.1);} 100%{background:transparent;} }
+    .lb-row.rank-down { animation:rankDownFlash 0.7s ease both; }
+    @keyframes rankDownFlash { 0%{background:rgba(255,51,102,0.15);box-shadow:inset 0 0 20px rgba(255,51,102,0.08);} 100%{background:transparent;} }
+    .row-num { font-family:'Share Tech Mono'; font-size:0.9rem; color:var(--text2); }
+    .row-name { font-family:'Rajdhani'; font-size:1rem; font-weight:600; display:flex; align-items:center; gap:6px; }
+    .team-icon { display:inline-flex; align-items:center; justify-content:center; width:22px; height:22px; border-radius:50%; background:rgba(0,229,255,0.1); border:1px solid rgba(0,229,255,0.3); font-size:0.75rem; flex-shrink:0; color:var(--cyan); }
+    .row-score { font-family:'Share Tech Mono'; font-size:0.95rem; color:var(--cyan); text-align:right; }
+    .change-badge { display:inline-flex; align-items:center; gap:3px; font-family:'Share Tech Mono'; font-size:0.75rem; font-weight:700; padding:3px 7px; letter-spacing:0.5px; clip-path:polygon(4px 0,100% 0,calc(100% - 4px) 100%,0 100%); }
+    .change-badge.up { color:var(--green); background:rgba(0,255,136,0.1); border:1px solid rgba(0,255,136,0.3); animation:badgePop 0.4s cubic-bezier(0.34,1.56,0.64,1) both; }
+    .change-badge.down { color:var(--red); background:rgba(255,51,102,0.1); border:1px solid rgba(255,51,102,0.3); animation:badgePop 0.4s cubic-bezier(0.34,1.56,0.64,1) both; }
+    .change-badge.same { color:var(--text2); background:rgba(0,229,255,0.04); border:1px solid rgba(0,229,255,0.1); }
+    @keyframes badgePop { 0%{transform:scale(0.6);opacity:0;} 100%{transform:scale(1);opacity:1;} }
+    .empty-state { text-align:center; padding:60px 20px; font-family:'Orbitron'; color:var(--text2); font-size:0.8rem; letter-spacing:2px; }
+    .last-update { text-align:center; margin-top:14px; font-family:'Share Tech Mono'; font-size:0.65rem; color:var(--text2); letter-spacing:2px; }
+    @media(max-width:640px) {
+      nav { padding:12px 16px; }
+      .nav-logo { font-size:0.9rem; letter-spacing:1px; }
+      .lb-title { font-size:1.5rem; letter-spacing:2px; }
+      .lb-table-head { grid-template-columns:40px 1fr 80px 60px; }
+      .lb-row { grid-template-columns:40px 1fr 80px 60px; padding:11px 12px; }
+    }
+    @keyframes float { 0%{transform:translateY(0);opacity:1;} 100%{transform:translateY(-100px);opacity:0;} }
+    ::-webkit-scrollbar { width:5px; }
+    ::-webkit-scrollbar-track { background:var(--dark2); }
+    ::-webkit-scrollbar-thumb { background:rgba(0,229,255,0.25); border-radius:3px; }
+  </style>
+</head>
+<body>
+  <div class="grid-bg"></div>
+  <div class="scanlines"></div>
+  <nav>
+    <div class="nav-logo">⚡ CLASH OF MINDS</div>
+    <div class="nav-right">
+      <div class="nav-badge"><div class="live-dot"></div>LIVE</div>
+    </div>
+  </nav>
+  <div class="lb-wrapper">
+    <div class="lb-header">
+      <div class="lb-title">TEAM LEADERBOARD</div>
+      <div class="lb-sub">TEAM SCOREBOARD</div>
+      <div class="lb-divider"></div>
+    </div>
+    <div class="lb-table-wrap">
+      <div class="lb-table-head">
+        <div>#</div>
+        <div>TIM</div>
+        <div style="text-align:right">SKOR</div>
+        <div style="text-align:center">CHG</div>
+      </div>
+      <div id="lb-rows"><div class="empty-state">[ MEMUAT DATA... ]</div></div>
+    </div>
+    <div class="last-update" id="last-update">—</div>
+  </div>
+  <div id="toast-container" style="position:fixed;bottom:24px;right:16px;z-index:999;display:flex;flex-direction:column;gap:8px;max-width:calc(100vw - 32px)"></div>
+  <script>
+    let teams=[],prevRanks={},scoreChanges={},prevScores={};
+    const changeExpiry={};
+    function clearChange(id){scoreChanges[id]=0;delete changeExpiry[id];const row=document.querySelector(`.lb-row[data-uid="${id}"]`);if(row){const b=row.querySelector('.change-badge');if(b){b.className='change-badge same';b.textContent='●';}}}
+    function scheduleExpiry(id){if(changeExpiry[id])clearTimeout(changeExpiry[id]);changeExpiry[id]=setTimeout(()=>clearChange(id),5000);}
+    function getSorted(){return[...teams].sort((a,b)=>b.score-a.score);}
+    function escHtml(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+    async function fetchTeams(){try{const r=await fetch('/api/teams');if(!r.ok)throw 0;return await r.json();}catch(e){return null;}}
+    function renderLeaderboard(){
+      const q=(document.getElementById('search-input')?.value||'').toLowerCase();
+      const sorted=getSorted();
+      const filtered=q?sorted.filter(t=>t.name.toLowerCase().includes(q)||(t.school||'').toLowerCase().includes(q)):sorted;
+      const container=document.getElementById('lb-rows');
+      if(!filtered.length){container.innerHTML='<div class="empty-state">[ TIDAK ADA DATA TIM ]</div>';prevRanks={};return;}
+      const oldPositions={};
+      container.querySelectorAll('.lb-row[data-uid]').forEach(el=>{oldPositions[el.dataset.uid]=el.getBoundingClientRect().top;});
+      const newRanks={};
+      filtered.forEach(t=>{newRanks[t.id]=sorted.indexOf(t)+1;});
+      container.innerHTML=filtered.map(t=>{
+        const rank=newRanks[t.id];
+        const delta=scoreChanges[t.id]||0;
+        let cb=delta>0?`<span class="change-badge up">▲+${delta}</span>`:delta<0?`<span class="change-badge down">▼${delta}</span>`:`<span class="change-badge same">●</span>`;
+        const         const rankDisplay=rank;
+        return `<div class="lb-row" data-uid="${t.id}">
+          <div class="row-num">${rankDisplay}</div>
+          <div>
+            <div class="row-name"><span class="team-icon">⚔</span>${escHtml(t.name)}</div>
+            <div style="font-size:0.72rem;color:var(--text2);margin-top:2px">${escHtml(t.school||'—')}</div>
+          </div>
+          <div class="row-score">${t.score}</div>
+          <div style="text-align:center;align-self:center">${cb}</div>
+        </div>`;
+      }).join('');
+      container.querySelectorAll('.lb-row[data-uid]').forEach(el=>{
+        const id=el.dataset.uid;
+        const newTop=el.getBoundingClientRect().top;
+        const oldTop=oldPositions[id];
+        const moved=(prevRanks[id]!==undefined&&newRanks[id]!==undefined)?prevRanks[id]-newRanks[id]:0;
+        if(oldTop!==undefined&&Math.abs(newTop-oldTop)>2){
+          const d=oldTop-newTop;
+          el.style.transition='none';el.style.transform=`translateY(${d}px)`;
+          requestAnimationFrame(()=>requestAnimationFrame(()=>{
+            el.style.transition='transform 0.55s cubic-bezier(0.4,0,0.2,1)';
+            el.style.transform='translateY(0)';
+            if(moved>0){el.classList.add('rank-up');setTimeout(()=>el.classList.remove('rank-up'),800);}
+            else if(moved<0){el.classList.add('rank-down');setTimeout(()=>el.classList.remove('rank-down'),800);}
+            setTimeout(()=>{el.style.transition='';el.style.transform='';},600);
+          }));
+        }else if(oldTop===undefined){
+          el.style.opacity='0';el.style.transform='translateX(-14px)';
+          requestAnimationFrame(()=>requestAnimationFrame(()=>{
+            el.style.transition='opacity 0.4s ease,transform 0.4s ease';
+            el.style.opacity='1';el.style.transform='translateX(0)';
+            setTimeout(()=>{el.style.transition='';el.style.transform='';el.style.opacity='';},450);
+          }));
+        }
+      });
+      prevRanks={...newRanks};
+      document.getElementById('last-update').textContent=`LAST UPDATE: ${new Date().toLocaleTimeString('id-ID')}`;
+    }
+    async function poll(){
+      const fresh=await fetchTeams();
+      if(fresh&&JSON.stringify(fresh)!==JSON.stringify(teams)){
+        fresh.forEach(t=>{if(prevScores[t.id]!==undefined&&t.score!==prevScores[t.id]){scoreChanges[t.id]=(scoreChanges[t.id]||0)+(t.score-prevScores[t.id]);scheduleExpiry(t.id);}});
+        const sb=getSorted();sb.forEach((t,i)=>{prevRanks[t.id]=i+1;});
+        fresh.forEach(t=>{prevScores[t.id]=t.score;});
+        teams=fresh;renderLeaderboard();
+      }
+    }
+    for(let i=0;i<14;i++){
+      const p=document.createElement('div');p.className='particle';
+      const sz=Math.random()*2.5+1,x=Math.random()*100,y=Math.random()*100;
+      const dur=Math.random()*20+15,del=Math.random()*10,op=Math.random()*0.35+0.05;
+      p.style.cssText=`width:${sz}px;height:${sz}px;left:${x}%;top:${y}%;background:rgba(0,229,255,${op});animation:float ${dur}s ${del}s infinite linear;`;
+      document.body.appendChild(p);
+    }
+    async function init(){
+      const fresh=await fetchTeams();
+      if(fresh){fresh.forEach(t=>{prevScores[t.id]=t.score;});teams=fresh;renderLeaderboard();}
+      setInterval(poll,3000);
+    }
+    init();
+  </script>
+</body>
+</html>

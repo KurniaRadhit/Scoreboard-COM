@@ -13,6 +13,7 @@
     :root {
       --cyan: #00e5ff;
       --neon2: #7df9ff;
+      --blue: #1565c0;
       --dark: #020c18;
       --dark2: #041224;
       --panel: rgba(4, 22, 44, 0.92);
@@ -24,11 +25,7 @@
       --green: #00ff88;
     }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
       font-family: 'Rajdhani', sans-serif;
@@ -43,43 +40,35 @@
       position: fixed;
       inset: 0;
       z-index: 0;
-      background: radial-gradient(ellipse 80% 60% at 20% 10%, rgba(0, 100, 200, 0.18) 0%, transparent 60%), radial-gradient(ellipse 60% 50% at 80% 80%, rgba(0, 200, 255, 0.12) 0%, transparent 60%), linear-gradient(180deg, #020c18 0%, #041224 50%, #020c18 100%);
+      background:
+        radial-gradient(ellipse 80% 60% at 20% 10%, rgba(0, 100, 200, 0.18) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 50% at 80% 80%, rgba(0, 200, 255, 0.12) 0%, transparent 60%),
+        linear-gradient(180deg, #020c18 0%, #041224 50%, #020c18 100%);
     }
 
     .grid-bg {
-      position: fixed;
-      inset: 0;
-      z-index: 0;
-      pointer-events: none;
-      background-image: linear-gradient(rgba(0, 229, 255, 0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 229, 255, 0.04) 1px, transparent 1px);
+      position: fixed; inset: 0; z-index: 0; pointer-events: none;
+      background-image:
+        linear-gradient(rgba(0, 229, 255, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 229, 255, 0.04) 1px, transparent 1px);
       background-size: 40px 40px;
       animation: gridMove 20s linear infinite;
     }
 
-    @keyframes gridMove {
-      to {
-        transform: translateY(40px);
-      }
-    }
+    @keyframes gridMove { to { transform: translateY(40px); } }
 
     .scanlines {
-      position: fixed;
-      inset: 0;
-      z-index: 1;
-      pointer-events: none;
-      opacity: 0.015;
+      position: fixed; inset: 0; z-index: 1; pointer-events: none; opacity: 0.015;
       background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0, 229, 255, 1) 2px, rgba(0, 229, 255, 1) 3px);
     }
 
-    /* ── GATE (login page) ── */
+    .particle { position: fixed; border-radius: 50%; pointer-events: none; z-index: 0; }
+
+    /* ── GATE ── */
     #gate-page {
-      position: fixed;
-      inset: 0;
-      z-index: 200;
+      position: fixed; inset: 0; z-index: 200;
       background: rgba(2, 12, 24, 0.98);
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      display: flex; align-items: center; justify-content: center;
       backdrop-filter: blur(8px);
     }
 
@@ -87,93 +76,30 @@
       background: var(--panel);
       border: 1px solid var(--border-bright);
       padding: 40px 36px;
-      width: 100%;
-      max-width: 380px;
-      margin: 16px;
+      width: 100%; max-width: 380px; margin: 16px;
       box-shadow: 0 0 60px rgba(0, 229, 255, 0.15);
     }
 
-    .gate-logo {
-      font-family: 'Orbitron';
-      font-size: 0.75rem;
-      color: var(--text2);
-      letter-spacing: 3px;
-      text-align: center;
-      margin-bottom: 24px;
-    }
-
-    .gate-title {
-      font-family: 'Orbitron';
-      font-size: 1rem;
-      font-weight: 900;
-      color: var(--cyan);
-      letter-spacing: 3px;
-      margin-bottom: 6px;
-      text-align: center;
-      filter: drop-shadow(0 0 10px var(--cyan));
-    }
-
-    .gate-sub {
-      font-size: 0.72rem;
-      color: var(--text2);
-      letter-spacing: 1.5px;
-      text-align: center;
-      margin-bottom: 24px;
-    }
-
-    .gate-divider {
-      width: 120px;
-      height: 1px;
-      margin: 0 auto 24px;
-      background: linear-gradient(90deg, transparent, var(--cyan), transparent);
-    }
+    .gate-logo { font-family: 'Orbitron'; font-size: 0.75rem; color: var(--text2); letter-spacing: 3px; text-align: center; margin-bottom: 24px; }
+    .gate-title { font-family: 'Orbitron'; font-size: 1rem; font-weight: 900; color: var(--cyan); letter-spacing: 3px; margin-bottom: 6px; text-align: center; filter: drop-shadow(0 0 10px var(--cyan)); }
+    .gate-sub { font-size: 0.72rem; color: var(--text2); letter-spacing: 1.5px; text-align: center; margin-bottom: 24px; }
+    .gate-divider { width: 120px; height: 1px; margin: 0 auto 24px; background: linear-gradient(90deg, transparent, var(--cyan), transparent); }
 
     .gate-input {
-      width: 100%;
-      background: rgba(0, 229, 255, 0.04);
-      border: 1px solid var(--border);
-      color: var(--text);
-      padding: 13px 16px;
-      font-family: 'Rajdhani';
-      font-size: 1rem;
-      outline: none;
-      margin-bottom: 12px;
-      transition: border-color 0.2s;
-      letter-spacing: 2px;
+      width: 100%; background: rgba(0, 229, 255, 0.04);
+      border: 1px solid var(--border); color: var(--text);
+      padding: 13px 16px; font-family: 'Rajdhani'; font-size: 1rem;
+      outline: none; margin-bottom: 12px; transition: border-color 0.2s; letter-spacing: 2px;
     }
+    .gate-input:focus { border-color: var(--cyan); box-shadow: 0 0 12px rgba(0, 229, 255, 0.15); }
 
-    .gate-input:focus {
-      border-color: var(--cyan);
-      box-shadow: 0 0 12px rgba(0, 229, 255, 0.15);
-    }
-
-    .gate-err {
-      font-size: 0.75rem;
-      color: var(--red);
-      font-family: 'Share Tech Mono';
-      letter-spacing: 1px;
-      min-height: 18px;
-      margin-bottom: 10px;
-      text-align: center;
-    }
-
-    .gate-hint {
-      font-size: 0.65rem;
-      color: var(--text2);
-      font-family: 'Share Tech Mono';
-      text-align: center;
-      margin-top: 16px;
-      letter-spacing: 1px;
-      opacity: 0.6;
-    }
+    .gate-err { font-size: 0.75rem; color: var(--red); font-family: 'Share Tech Mono'; letter-spacing: 1px; min-height: 18px; margin-bottom: 10px; text-align: center; }
+    .gate-hint { font-size: 0.65rem; color: var(--text2); font-family: 'Share Tech Mono'; text-align: center; margin-top: 16px; letter-spacing: 1px; opacity: 0.6; }
 
     /* ── NAV ── */
     nav {
-      position: relative;
-      z-index: 100;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      position: relative; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
       padding: 14px 24px;
       background: rgba(2, 12, 24, 0.9);
       border-bottom: 1px solid var(--border);
@@ -181,607 +107,330 @@
     }
 
     .nav-logo {
-      font-family: 'Orbitron', monospace;
-      font-size: 1.1rem;
-      font-weight: 900;
+      font-family: 'Orbitron', monospace; font-size: 1.1rem; font-weight: 900;
       background: linear-gradient(90deg, var(--cyan), var(--neon2));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      filter: drop-shadow(0 0 8px var(--cyan));
-      letter-spacing: 2px;
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      filter: drop-shadow(0 0 8px var(--cyan)); letter-spacing: 2px;
     }
 
-    .nav-right {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
+    .nav-right { display: flex; align-items: center; gap: 12px; }
+    .nav-center { display:flex; align-items:center; gap:6px; position:absolute; left:50%; transform:translateX(-50%); }
+    .nav-view-btn { font-family:'Orbitron',monospace; font-size:0.6rem; font-weight:700; padding:6px 14px; border:1px solid var(--border); background:rgba(0,229,255,0.06); color:var(--text2); cursor:pointer; letter-spacing:1.5px; border-radius:2px; transition:all 0.2s; text-transform:uppercase; }
+    .nav-view-btn:hover { border-color:var(--cyan); color:var(--cyan); background:rgba(0,229,255,0.12); }
+    .nav-view-btn.active { border-color:var(--cyan); color:var(--cyan); background:rgba(0,229,255,0.15); box-shadow:0 0 10px rgba(0,229,255,0.2); }
 
-    .nav-link {
-      font-family: 'Orbitron';
-      font-size: 0.65rem;
-      font-weight: 700;
-      padding: 8px 16px;
-      border: 1px solid var(--border);
-      background: transparent;
-      color: var(--text2);
-      cursor: pointer;
-      letter-spacing: 1.5px;
-      text-decoration: none;
-      clip-path: polygon(6px 0, 100% 0, calc(100% - 6px) 100%, 0 100%);
+    .nav-badge {
+      font-size: 0.6rem; padding: 4px 10px;
+      background: rgba(0, 229, 255, 0.12);
+      border: 1px solid var(--border); border-radius: 2px;
+      color: var(--text2); font-family: 'Share Tech Mono';
+      display: flex; align-items: center; gap: 6px;
       transition: all 0.2s;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
     }
 
-    .nav-link:hover {
-      border-color: var(--cyan);
-      color: var(--cyan);
+    .nav-badge.off {
+      background: rgba(255, 51, 102, 0.1);
+      border-color: rgba(255, 51, 102, 0.4);
+      color: var(--red);
     }
 
-    /* ── CONTENT ── */
-    .admin-wrapper {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 24px 16px 60px;
-      position: relative;
-      z-index: 10;
+    .admin-badge {
+      font-size: 0.6rem; padding: 4px 10px;
+      background: rgba(255, 51, 102, 0.1);
+      border: 1px solid rgba(255, 51, 102, 0.4); border-radius: 2px;
+      color: var(--red); font-family: 'Share Tech Mono'; letter-spacing: 1px;
     }
 
-    .admin-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 24px;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
+    .live-dot { width: 6px; height: 6px; background: var(--green); border-radius: 50%; animation: pulse 1.5s infinite; }
 
-    .admin-title {
-      font-family: 'Orbitron';
-      font-size: 1.1rem;
-      font-weight: 900;
-      color: var(--cyan);
-      letter-spacing: 3px;
-    }
-
-    .admin-sub {
-      font-size: 0.72rem;
-      color: var(--text2);
-      letter-spacing: 1.5px;
-      margin-top: 4px;
-    }
-
-    .admin-grid {
-      display: grid;
-      grid-template-columns: 360px 1fr;
-      gap: 20px;
-      align-items: start;
-    }
-
-    .card {
-      background: var(--panel);
-      border: 1px solid var(--border);
-      padding: 22px;
-      margin-bottom: 16px;
-    }
-
-    .card:last-child {
-      margin-bottom: 0;
-    }
-
-    .card-title {
-      font-family: 'Orbitron';
-      font-size: 0.72rem;
-      font-weight: 700;
-      color: var(--cyan);
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      margin-bottom: 18px;
-      padding-bottom: 12px;
-      border-bottom: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .card-title::before {
-      content: '';
-      display: block;
-      width: 3px;
-      height: 14px;
-      background: var(--cyan);
-      flex-shrink: 0;
-    }
-
-    .form-group {
-      margin-bottom: 14px;
-    }
-
-    .form-label {
-      display: block;
-      font-size: 0.7rem;
-      color: var(--text2);
-      margin-bottom: 5px;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-    }
-
-    .form-input,
-    .form-select {
-      width: 100%;
-      background: rgba(0, 229, 255, 0.04);
-      border: 1px solid var(--border);
-      color: var(--text);
-      padding: 10px 14px;
-      font-family: 'Rajdhani';
-      font-size: 0.95rem;
-      outline: none;
-      transition: border-color 0.2s, box-shadow 0.2s;
-      -webkit-appearance: none;
-    }
-
-    .form-input:focus,
-    .form-select:focus {
-      border-color: var(--cyan);
-      box-shadow: 0 0 12px rgba(0, 229, 255, 0.15);
-    }
-
-    .form-select option {
-      background: var(--dark2);
-    }
-
-    .form-row {
-      display: flex;
-      gap: 10px;
-    }
-
-    .form-row .form-group {
-      flex: 1;
-      margin-bottom: 0;
+    @keyframes pulse {
+      0%, 100% { opacity: 1; box-shadow: 0 0 4px var(--green); }
+      50% { opacity: 0.5; box-shadow: none; }
     }
 
     .btn {
-      font-family: 'Orbitron';
-      font-size: 0.68rem;
-      font-weight: 700;
-      padding: 10px 20px;
-      border: 1px solid;
-      cursor: pointer;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      transition: all 0.2s;
+      font-family: 'Orbitron'; font-size: 0.68rem; font-weight: 700;
+      padding: 8px 16px; border: 1px solid; cursor: pointer;
+      letter-spacing: 1.5px; text-transform: uppercase; transition: all 0.2s;
       clip-path: polygon(6px 0, 100% 0, calc(100% - 6px) 100%, 0 100%);
-      position: relative;
-      overflow: hidden;
       background: transparent;
     }
+    .btn-cyan { border-color: var(--cyan); color: var(--cyan); background: rgba(0, 229, 255, 0.08); }
+    .btn-cyan:hover { background: rgba(0, 229, 255, 0.18); box-shadow: 0 0 14px rgba(0, 229, 255, 0.3); }
+    .btn-red { border-color: var(--red); color: var(--red); background: rgba(255, 51, 102, 0.08); }
+    .btn-red:hover { background: rgba(255, 51, 102, 0.18); box-shadow: 0 0 14px rgba(255, 51, 102, 0.3); }
+    .btn-green { border-color: var(--green); color: var(--green); background: rgba(0, 255, 136, 0.08); }
+    .btn-green:hover { background: rgba(0, 255, 136, 0.18); box-shadow: 0 0 14px rgba(0, 255, 136, 0.3); }
+    .btn-sm { padding: 6px 12px; font-size: 0.6rem; }
+    .btn-full { width: 100%; display: block; text-align: center; }
 
-    .btn:disabled {
-      opacity: 0.5;
-      cursor: not-allowed;
+    /* ── LEADERBOARD ── */
+    .lb-wrapper {
+      max-width: 860px; margin: 0 auto;
+      padding: 28px 16px 20px;
+      position: relative; z-index: 10;
     }
 
-    .btn-cyan {
-      border-color: var(--cyan);
-      color: var(--cyan);
-      background: rgba(0, 229, 255, 0.08);
+    .lb-header { text-align: center; margin-bottom: 28px; }
+
+    .lb-title {
+      font-family: 'Orbitron', monospace; font-size: 2.2rem; font-weight: 900;
+      background: linear-gradient(90deg, var(--neon2), var(--cyan), var(--neon2));
+      background-size: 200%;
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      animation: shimmer 3s linear infinite;
+      filter: drop-shadow(0 0 20px var(--cyan)); letter-spacing: 4px;
     }
 
-    .btn-cyan:hover:not(:disabled) {
-      background: rgba(0, 229, 255, 0.18);
-      box-shadow: 0 0 14px rgba(0, 229, 255, 0.3);
+    @keyframes shimmer { 0% { background-position: 0% } 100% { background-position: 200% } }
+
+    .lb-sub { font-family: 'Share Tech Mono'; font-size: 0.75rem; color: var(--text2); letter-spacing: 3px; margin-top: 6px; }
+
+    .lb-divider { width: 200px; height: 1px; margin: 14px auto 0; background: linear-gradient(90deg, transparent, var(--cyan), transparent); }
+
+    .lb-stats { display: flex; gap: 12px; justify-content: center; margin-bottom: 20px; flex-wrap: wrap; }
+
+    .stat-card {
+      background: var(--panel); border: 1px solid var(--border);
+      padding: 10px 20px; text-align: center;
+      clip-path: polygon(10px 0, 100% 0, calc(100% - 10px) 100%, 0 100%);
+      min-width: 110px;
     }
 
-    .btn-green {
-      border-color: var(--green);
-      color: var(--green);
-      background: rgba(0, 255, 136, 0.08);
-    }
+    .stat-num { font-family: 'Orbitron', monospace; font-size: 1.5rem; font-weight: 700; color: var(--cyan); line-height: 1; }
+    .stat-label { font-size: 0.68rem; color: var(--text2); letter-spacing: 2px; margin-top: 4px; }
 
-    .btn-green:hover:not(:disabled) {
-      background: rgba(0, 255, 136, 0.16);
-      box-shadow: 0 0 14px rgba(0, 255, 136, 0.3);
+    .lb-search {
+      display: flex; gap: 10px; margin-bottom: 16px;
+      background: var(--panel); border: 1px solid var(--border);
+      padding: 10px 16px; align-items: center;
     }
+    .lb-search input { flex: 1; background: transparent; border: none; outline: none; font-family: 'Rajdhani'; font-size: 1rem; color: var(--text); caret-color: var(--cyan); }
+    .lb-search input::placeholder { color: var(--text2); }
+    .lb-search svg { color: var(--cyan); flex-shrink: 0; }
 
-    .btn-red {
-      border-color: var(--red);
-      color: var(--red);
-      background: rgba(255, 51, 102, 0.08);
-    }
+    .lb-table-wrap { background: var(--panel); border: 1px solid var(--border); overflow: hidden; }
+    #lb-rows { position: relative; }
 
-    .btn-red:hover:not(:disabled) {
-      background: rgba(255, 51, 102, 0.16);
-      box-shadow: 0 0 14px rgba(255, 51, 102, 0.3);
-    }
-
-    .btn-sm {
-      padding: 6px 12px;
-      font-size: 0.6rem;
-    }
-
-    .btn-full {
-      width: 100%;
-      display: block;
-      text-align: center;
-    }
-
-    .btn-row {
-      display: flex;
-      gap: 10px;
-      margin-top: 10px;
-    }
-
-    .admin-table-wrap {
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
-    }
-
-    .admin-table {
-      width: 100%;
-      border-collapse: collapse;
-      font-family: 'Rajdhani';
-      font-size: 0.9rem;
-      min-width: 400px;
-    }
-
-    .admin-table th {
-      padding: 10px 12px;
-      text-align: left;
-      font-family: 'Orbitron';
-      font-size: 0.58rem;
-      letter-spacing: 2px;
-      color: var(--cyan);
+    .lb-table-head {
+      display: grid;
+      grid-template-columns: 48px 1fr 1fr 80px 66px 72px;
+      padding: 10px 16px;
       background: rgba(0, 229, 255, 0.07);
       border-bottom: 1px solid var(--border);
-      white-space: nowrap;
+      font-family: 'Orbitron', monospace; font-size: 0.58rem;
+      letter-spacing: 2px; color: var(--cyan); text-transform: uppercase;
     }
 
-    .admin-table td {
-      padding: 10px 12px;
+    .lb-row {
+      display: grid;
+      grid-template-columns: 48px 1fr 1fr 80px 66px 72px;
+      padding: 13px 16px;
       border-bottom: 1px solid rgba(0, 229, 255, 0.06);
-      vertical-align: middle;
+      align-items: center; transition: background 0.2s;
+      will-change: transform; position: relative;
     }
 
-    .admin-table tr:hover td {
-      background: rgba(0, 229, 255, 0.03);
+    .lb-row:hover { background: rgba(0, 229, 255, 0.05); }
+    .lb-row:last-child { border-bottom: none; }
+
+    .lb-row.rank-up { animation: rankUpFlash 0.7s ease both; }
+    @keyframes rankUpFlash {
+      0% { background: rgba(0, 255, 136, 0.18); box-shadow: inset 0 0 20px rgba(0, 255, 136, 0.1); }
+      100% { background: transparent; }
     }
 
-    .admin-table tr:last-child td {
-      border-bottom: none;
+    .lb-row.rank-down { animation: rankDownFlash 0.7s ease both; }
+    @keyframes rankDownFlash {
+      0% { background: rgba(255, 51, 102, 0.15); box-shadow: inset 0 0 20px rgba(255, 51, 102, 0.08); }
+      100% { background: transparent; }
     }
 
-    .td-actions {
-      display: flex;
-      gap: 6px;
-      flex-wrap: wrap;
-    }
+    .row-num { font-family: 'Share Tech Mono'; font-size: 0.9rem; color: var(--text2); }
+    .row-name { font-family: 'Rajdhani'; font-size: 1rem; font-weight: 600; }
+    .row-school { font-size: 0.78rem; color: var(--text2); }
+    .row-score { font-family: 'Share Tech Mono'; font-size: 0.95rem; color: var(--cyan); text-align: right; }
 
-    .tag-school {
-      font-size: 0.7rem;
-      color: var(--text2);
-      background: rgba(0, 229, 255, 0.07);
+    /* Arrow buttons */
+    .arrow-wrap { display: flex; align-items: center; justify-content: center; gap: 4px; }
+
+    .arrow-btn {
+      display: flex; align-items: center; justify-content: center;
+      width: 26px; height: 26px;
+      background: rgba(0, 229, 255, 0.06);
       border: 1px solid var(--border);
-      padding: 2px 8px;
-      display: inline-block;
-      white-space: nowrap;
-      max-width: 140px;
-      overflow: hidden;
-      text-overflow: ellipsis;
+      cursor: pointer; font-size: 0.65rem;
+      transition: all 0.15s; color: var(--text2);
+      clip-path: polygon(4px 0, 100% 0, calc(100% - 4px) 100%, 0 100%);
     }
 
-    .score-cell {
-      font-family: 'Share Tech Mono';
-      color: var(--cyan);
-      font-size: 0.92rem;
+    .arrow-btn:active { transform: scale(0.88); }
+
+    .arrow-up:hover {
+      color: var(--green); border-color: var(--green);
+      background: rgba(0, 255, 136, 0.14);
+      box-shadow: 0 0 8px rgba(0, 255, 136, 0.3);
     }
+
+    .arrow-down:hover {
+      color: var(--red); border-color: var(--red);
+      background: rgba(255, 51, 102, 0.14);
+      box-shadow: 0 0 8px rgba(255, 51, 102, 0.3);
+    }
+
+    .change-badge {
+      display: inline-flex; align-items: center; gap: 3px;
+      font-family: 'Share Tech Mono'; font-size: 0.75rem; font-weight: 700;
+      padding: 3px 7px; letter-spacing: 0.5px;
+      clip-path: polygon(4px 0, 100% 0, calc(100% - 4px) 100%, 0 100%);
+    }
+
+    .change-badge.up { color: var(--green); background: rgba(0, 255, 136, 0.1); border: 1px solid rgba(0, 255, 136, 0.3); animation: badgePop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) both; }
+    .change-badge.down { color: var(--red); background: rgba(255, 51, 102, 0.1); border: 1px solid rgba(255, 51, 102, 0.3); animation: badgePop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) both; }
+    .change-badge.same { color: var(--text2); background: rgba(0, 229, 255, 0.04); border: 1px solid rgba(0, 229, 255, 0.1); }
+
+    @keyframes badgePop {
+      0% { transform: scale(0.6); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    .empty-state { text-align: center; padding: 60px 20px; font-family: 'Orbitron'; color: var(--text2); font-size: 0.8rem; letter-spacing: 2px; }
+    .last-update { text-align: center; margin-top: 14px; font-family: 'Share Tech Mono'; font-size: 0.65rem; color: var(--text2); letter-spacing: 2px; }
+
+    /* ── CSV PANEL ── */
+    .csv-panel {
+      max-width: 860px; margin: 8px auto 60px;
+      position: relative; z-index: 10; padding: 0 16px;
+    }
+
+    .csv-toggle {
+      width: 100%; padding: 11px 18px;
+      background: var(--panel); border: 1px solid var(--border);
+      color: var(--text2); font-family: 'Orbitron'; font-size: 0.62rem;
+      letter-spacing: 2px; cursor: pointer; text-align: left;
+      display: flex; align-items: center; gap: 10px; transition: all 0.2s;
+    }
+    .csv-toggle:hover { border-color: var(--cyan); color: var(--cyan); }
+    .csv-toggle-arrow { margin-left: auto; transition: transform 0.3s; display: inline-block; }
+    .csv-toggle.open .csv-toggle-arrow { transform: rotate(180deg); }
+
+    .csv-body {
+      background: var(--panel); border: 1px solid var(--border);
+      border-top: none; padding: 20px;
+      display: none;
+    }
+    .csv-body.open { display: block; }
 
     .csv-dropzone {
-      border: 2px dashed var(--border);
-      padding: 22px 16px;
-      text-align: center;
-      cursor: pointer;
-      transition: all 0.25s;
-      background: rgba(0, 229, 255, 0.02);
-      position: relative;
+      border: 2px dashed var(--border); padding: 22px 16px;
+      text-align: center; cursor: pointer; transition: all 0.25s;
+      background: rgba(0, 229, 255, 0.02); position: relative;
+    }
+    .csv-dropzone:hover, .csv-dropzone.drag-over { border-color: var(--cyan); background: rgba(0, 229, 255, 0.06); }
+    .csv-dropzone input[type=file] { position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%; }
+    .csv-icon { font-size: 1.8rem; margin-bottom: 6px; }
+    .csv-label { font-family: 'Orbitron'; font-size: 0.65rem; color: var(--cyan); letter-spacing: 2px; }
+    .csv-sublabel { font-size: 0.7rem; color: var(--text2); margin-top: 4px; }
+
+    .csv-preview { margin-top: 10px; max-height: 160px; overflow-y: auto; border: 1px solid var(--border); background: rgba(0, 0, 0, 0.2); }
+    .csv-preview table { width: 100%; border-collapse: collapse; font-size: 0.78rem; }
+    .csv-preview th { padding: 6px 10px; background: rgba(0, 229, 255, 0.08); font-family: 'Orbitron'; font-size: 0.55rem; letter-spacing: 1.5px; color: var(--cyan); text-align: left; border-bottom: 1px solid var(--border); }
+    .csv-preview td { padding: 6px 10px; border-bottom: 1px solid rgba(0, 229, 255, 0.05); color: var(--text); }
+    .csv-count { font-family: 'Share Tech Mono'; font-size: 0.7rem; color: var(--green); margin-top: 8px; }
+    .csv-err-msg { font-family: 'Share Tech Mono'; font-size: 0.7rem; color: var(--red); margin-top: 6px; white-space: pre-wrap; }
+    .csv-actions { display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap; }
+
+    .import-mode-toggle { display: flex; margin-bottom: 10px; }
+    .import-mode-btn { flex: 1; padding: 8px; font-family: 'Orbitron'; font-size: 0.58rem; font-weight: 700; letter-spacing: 1.5px; border: 1px solid var(--border); background: transparent; color: var(--text2); cursor: pointer; transition: all 0.2s; }
+    .import-mode-btn:first-child { clip-path: polygon(6px 0, 100% 0, 100% 100%, 0 100%); }
+    .import-mode-btn:last-child { clip-path: polygon(0 0, calc(100% - 6px) 0, 100% 100%, 0 100%); border-left: none; }
+    .import-mode-btn.active { background: rgba(0, 229, 255, 0.12); border-color: var(--cyan); color: var(--cyan); }
+
+    /* ── TOAST ── */
+    .toast-container { position: fixed; bottom: 24px; right: 16px; z-index: 999; display: flex; flex-direction: column; gap: 8px; max-width: calc(100vw - 32px); }
+
+    @keyframes float {
+      0% { transform: translateY(0); opacity: 1; }
+      100% { transform: translateY(-100px); opacity: 0; }
     }
 
-    .csv-dropzone:hover,
-    .csv-dropzone.drag-over {
-      border-color: var(--cyan);
-      background: rgba(0, 229, 255, 0.06);
+    /* ── RESPONSIVE ── */
+    @media(max-width:640px) {
+      nav { padding: 12px 16px; }
+      .nav-logo { font-size: 0.9rem; letter-spacing: 1px; }
+      .lb-title { font-size: 1.5rem; letter-spacing: 2px; }
+      .lb-sub { font-size: 0.65rem; letter-spacing: 1.5px; }
+      .lb-wrapper { padding: 20px 12px 16px; }
+      .csv-panel { padding: 0 12px; }
+
+      .lb-table-head { grid-template-columns: 40px 1fr 72px 56px 64px; }
+      .lb-row { grid-template-columns: 40px 1fr 72px 56px 64px; padding: 11px 12px; }
+      .col-school { display: none; }
+
+      .stat-card { min-width: 90px; padding: 8px 14px; }
+      .stat-num { font-size: 1.2rem; }
+      .change-badge { font-size: 0.65rem; padding: 2px 5px; }
     }
 
-    .csv-dropzone input[type=file] {
-      position: absolute;
-      inset: 0;
-      opacity: 0;
-      cursor: pointer;
-      width: 100%;
-      height: 100%;
+    @media(max-width:380px) {
+      .lb-title { font-size: 1.2rem; }
+      .lb-table-head { grid-template-columns: 36px 1fr 60px 52px; }
+      .lb-row { grid-template-columns: 36px 1fr 60px 52px; }
+      .col-chg { display: none; }
     }
 
-    .csv-icon {
-      font-size: 1.8rem;
-      margin-bottom: 6px;
-    }
 
-    .csv-label {
-      font-family: 'Orbitron';
-      font-size: 0.65rem;
-      color: var(--cyan);
-      letter-spacing: 2px;
+    /* ── TAB SWITCHER ── */
+    .tab-switcher {
+      max-width: 860px; margin: 20px auto 0;
+      padding: 0 16px;
+      position: relative; z-index: 10;
+      display: flex; gap: 0;
     }
-
-    .csv-sublabel {
-      font-size: 0.7rem;
-      color: var(--text2);
-      margin-top: 4px;
+    .tab-btn {
+      flex: 1; padding: 12px 20px;
+      font-family: 'Orbitron'; font-size: 0.65rem; font-weight: 700;
+      letter-spacing: 2px; border: 1px solid var(--border);
+      background: transparent; color: var(--text2);
+      cursor: pointer; transition: all 0.2s;
+      text-transform: uppercase;
     }
-
-    .csv-preview {
-      margin-top: 10px;
-      max-height: 160px;
-      overflow-y: auto;
-      border: 1px solid var(--border);
-      background: rgba(0, 0, 0, 0.2);
-    }
-
-    .csv-preview table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 0.78rem;
-    }
-
-    .csv-preview th {
-      padding: 6px 10px;
-      background: rgba(0, 229, 255, 0.08);
-      font-family: 'Orbitron';
-      font-size: 0.55rem;
-      letter-spacing: 1.5px;
-      color: var(--cyan);
-      text-align: left;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .csv-preview td {
-      padding: 6px 10px;
-      border-bottom: 1px solid rgba(0, 229, 255, 0.05);
-      color: var(--text);
-    }
-
-    .csv-count {
-      font-family: 'Share Tech Mono';
-      font-size: 0.7rem;
-      color: var(--green);
-      margin-top: 8px;
-    }
-
-    .csv-err-msg {
-      font-family: 'Share Tech Mono';
-      font-size: 0.7rem;
-      color: var(--red);
-      margin-top: 6px;
-      white-space: pre-wrap;
-    }
-
-    .csv-actions {
-      display: flex;
-      gap: 8px;
-      margin-top: 10px;
-      flex-wrap: wrap;
-    }
-
-    .import-mode-toggle {
-      display: flex;
-      margin-bottom: 10px;
-    }
-
-    .import-mode-btn {
-      flex: 1;
-      padding: 8px;
-      font-family: 'Orbitron';
-      font-size: 0.58rem;
-      font-weight: 700;
-      letter-spacing: 1.5px;
-      border: 1px solid var(--border);
-      background: transparent;
-      color: var(--text2);
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-
-    .import-mode-btn:first-child {
-      clip-path: polygon(6px 0, 100% 0, 100% 100%, 0 100%);
-    }
-
-    .import-mode-btn:last-child {
-      clip-path: polygon(0 0, calc(100% - 6px) 0, 100% 100%, 0 100%);
-      border-left: none;
-    }
-
-    .import-mode-btn.active {
+    .tab-btn:first-child { clip-path: polygon(8px 0, 100% 0, 100% 100%, 0 100%); border-right: none; }
+    .tab-btn:last-child  { clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 100%, 0 100%); }
+    .tab-btn.active {
       background: rgba(0, 229, 255, 0.12);
-      border-color: var(--cyan);
-      color: var(--cyan);
+      border-color: var(--cyan); color: var(--cyan);
+      box-shadow: 0 0 16px rgba(0, 229, 255, 0.15);
     }
+    .tab-btn:hover:not(.active) { border-color: rgba(0,229,255,0.5); color: var(--text); }
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
 
-    .toast-container {
-      position: fixed;
-      bottom: 20px;
-      right: 16px;
-      z-index: 500;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      max-width: calc(100vw - 32px);
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: var(--dark2); }
+    ::-webkit-scrollbar-thumb { background: rgba(0, 229, 255, 0.25); border-radius: 3px; }
+
+    /* ── TAB SWITCHER ── */
+    .tab-switcher {
+      max-width: 860px; margin: 20px auto 0; padding: 0 16px;
+      position: relative; z-index: 10;
+      display: flex; gap: 0;
     }
-
-    .toast {
-      background: var(--panel);
-      border: 1px solid var(--border-bright);
-      padding: 10px 18px;
-      font-family: 'Rajdhani';
-      font-size: 0.88rem;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      animation: toastIn 0.3s ease, toastOut 0.3s ease 2.7s both;
-      min-width: 200px;
-      max-width: 320px;
-      clip-path: polygon(6px 0, 100% 0, calc(100% - 6px) 100%, 0 100%);
+    .tab-btn {
+      flex: 1; padding: 11px 16px;
+      font-family: 'Orbitron'; font-size: 0.65rem; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase; cursor: pointer;
+      border: 1px solid var(--border); background: transparent;
+      color: var(--text2); transition: all 0.2s;
     }
-
-    .toast.success {
-      border-color: var(--green);
+    .tab-btn:first-child { clip-path: polygon(8px 0, 100% 0, 100% 100%, 0 100%); }
+    .tab-btn:last-child { clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 100%, 0 100%); border-left: none; }
+    .tab-btn.active {
+      background: rgba(0, 229, 255, 0.12);
+      border-color: var(--cyan); color: var(--cyan);
+      box-shadow: 0 0 14px rgba(0, 229, 255, 0.15);
     }
-
-    .toast.error {
-      border-color: var(--red);
-    }
-
-    @keyframes toastIn {
-      from {
-        opacity: 0;
-        transform: translateX(16px)
-      }
-
-      to {
-        opacity: 1;
-        transform: none
-      }
-    }
-
-    @keyframes toastOut {
-      to {
-        opacity: 0;
-        transform: translateX(16px)
-      }
-    }
-
-    .modal-overlay {
-      position: fixed;
-      inset: 0;
-      z-index: 300;
-      background: rgba(2, 12, 24, 0.85);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      backdrop-filter: blur(4px);
-      padding: 16px;
-    }
-
-    .modal-overlay.open {
-      display: flex;
-    }
-
-    .modal-box {
-      background: var(--panel);
-      border: 1px solid var(--border-bright);
-      padding: 28px;
-      width: 100%;
-      max-width: 360px;
-      clip-path: polygon(10px 0, 100% 0, calc(100% - 10px) 100%, 0 100%);
-      box-shadow: 0 0 48px rgba(0, 229, 255, 0.15);
-      animation: modalIn 0.3s ease;
-    }
-
-    @keyframes modalIn {
-      from {
-        opacity: 0;
-        transform: scale(0.95)
-      }
-
-      to {
-        opacity: 1;
-        transform: none
-      }
-    }
-
-    .modal-title {
-      font-family: 'Orbitron';
-      font-size: 0.82rem;
-      font-weight: 700;
-      color: var(--cyan);
-      letter-spacing: 2px;
-      margin-bottom: 14px;
-    }
-
-    .modal-actions {
-      display: flex;
-      gap: 10px;
-      margin-top: 18px;
-      justify-content: flex-end;
-      flex-wrap: wrap;
-    }
-
-    ::-webkit-scrollbar {
-      width: 5px;
-      height: 5px;
-    }
-
-    ::-webkit-scrollbar-track {
-      background: var(--dark2);
-    }
-
-    ::-webkit-scrollbar-thumb {
-      background: rgba(0, 229, 255, 0.25);
-      border-radius: 3px;
-    }
-
-    @media(max-width:780px) {
-      .admin-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    @media(max-width:600px) {
-      nav {
-        padding: 12px 14px;
-      }
-
-      .nav-logo {
-        font-size: 0.9rem;
-        letter-spacing: 1px;
-      }
-
-      .admin-wrapper {
-        padding: 16px 12px 48px;
-      }
-
-      .card {
-        padding: 16px;
-      }
-
-      .form-row {
-        flex-direction: column;
-        gap: 0;
-      }
-
-      .form-row .form-group {
-        margin-bottom: 14px;
-      }
-
-      .btn-row {
-        flex-direction: column;
-      }
-
-      .btn-row .btn {
-        width: 100%;
-        text-align: center;
-      }
-
-      .gate-box {
-        padding: 28px 20px;
-      }
-    }
-
-    @keyframes gridMove {
-      to {
-        transform: translateY(40px);
-      }
-    }
+    .tab-btn:hover:not(.active) { background: rgba(0, 229, 255, 0.05); color: var(--text); }
   </style>
 </head>
 
@@ -789,7 +438,7 @@
   <div class="grid-bg"></div>
   <div class="scanlines"></div>
 
-  <!-- ── LOGIN PAGE ── -->
+  <!-- ── LOGIN GATE ── -->
   <div id="gate-page">
     <div class="gate-box">
       <div class="gate-logo">⚡ CLASH OF MINDS</div>
@@ -804,252 +453,255 @@
     </div>
   </div>
 
-  <!-- ── NAV (hidden until logged in) ── -->
+  <!-- ── NAV ── -->
   <nav id="main-nav" style="display:none">
     <div class="nav-logo">⚡ CLASH OF MINDS</div>
+    <div class="nav-center">
+      <button class="nav-view-btn active" id="nav-btn-individual" onclick="switchTab('individual')">👤 LEADERBOARD</button>
+      <button class="nav-view-btn" id="nav-btn-team" onclick="switchTab('team')">👥 TEAM LEADERBOARD</button>
+    </div>
     <div class="nav-right">
-      <a href="/" class="nav-link">← LEADERBOARD</a>
+      <div class="admin-badge">⚙ ADMIN</div>
+      <button class="nav-badge" id="school-toggle" onclick="toggleSchool()" style="cursor:pointer;border:1px solid var(--border);background:rgba(0,229,255,0.12)">
+        SEKOLAH: ON
+      </button>
+      <div class="nav-badge">
+        <div class="live-dot"></div>LIVE
+      </div>
       <button class="btn btn-red btn-sm" onclick="doLogout()">LOGOUT</button>
     </div>
   </nav>
 
-  <!-- ── ADMIN CONTENT (hidden until logged in) ── -->
-  <div class="admin-wrapper" id="admin-content" style="display:none">
-    <div class="admin-header">
-      <div>
-        <div class="admin-title">ADMIN PANEL</div>
-        <div class="admin-sub">KELOLA DATA PESERTA & SKOR</div>
-      </div>
+  <!-- ── ADMIN CONTENT ── -->
+  <div id="admin-content" style="display:none">
+
+    <!-- Tab Switcher -->
+    <div class="tab-switcher">
+      <button class="tab-btn active" id="tab-individual" onclick="switchTab('individual')">👤 INDIVIDUAL</button>
+      <button class="tab-btn" id="tab-team" onclick="switchTab('team')">👥 TEAM</button>
     </div>
 
-    <div class="admin-grid">
-      <!-- LEFT -->
-      <div>
-        <!-- Add/Edit -->
-        <div class="card">
-          <div class="card-title" id="form-card-title">TAMBAH PESERTA</div>
-          <input type="hidden" id="edit-id">
-          <div class="form-group">
-            <label class="form-label">NAMA PESERTA *</label>
-            <input class="form-input" type="text" id="f-name" placeholder="Masukkan nama...">
-          </div>
-          <div class="form-group">
-            <label class="form-label">ASAL SEKOLAH *</label>
-            <input class="form-input" type="text" id="f-school" placeholder="Nama sekolah...">
-          </div>
-          <div class="form-group">
-            <label class="form-label">SKOR AWAL</label>
-            <input class="form-input" type="number" id="f-score" placeholder="0" min="0">
-          </div>
-          <div class="btn-row">
-            <button class="btn btn-green btn-full" onclick="saveUser()" id="save-btn">SIMPAN</button>
-            <button class="btn btn-cyan" onclick="resetForm()" id="cancel-btn" style="display:none">BATAL</button>
-          </div>
-        </div>
+    <!-- ── INDIVIDUAL TAB ── -->
+    <div id="section-individual">
 
-        <!-- Quick Score -->
-        <div class="card">
-          <div class="card-title">UPDATE SKOR CEPAT</div>
-          <div class="form-group">
-            <label class="form-label">PILIH PESERTA</label>
-            <select class="form-select" id="qs-user">
-              <option value="">— Pilih Peserta —</option>
-            </select>
-          </div>
-          <div class="form-row">
-            <div class="form-group">
-              <label class="form-label">OPERASI</label>
-              <select class="form-select" id="qs-op">
-                <option value="set">SET (Ganti)</option>
-                <option value="add">TAMBAH (+)</option>
-                <option value="sub">KURANGI (−)</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label class="form-label">NILAI</label>
-              <input class="form-input" type="number" id="qs-val" placeholder="0" min="0">
-            </div>
-          </div>
-          <button class="btn btn-cyan btn-full" style="margin-top:8px" onclick="quickScore()">TERAPKAN SKOR</button>
-        </div>
-
-        <!-- Change Password -->
-        <div class="card">
-          <div class="card-title">GANTI PASSWORD</div>
-          <div class="form-group">
-            <label class="form-label">PASSWORD LAMA</label>
-            <input class="form-input" type="password" id="cp-old" placeholder="••••••••">
-          </div>
-          <div class="form-group">
-            <label class="form-label">PASSWORD BARU</label>
-            <input class="form-input" type="password" id="cp-new" placeholder="••••••••">
-          </div>
-          <button class="btn btn-cyan btn-full" style="margin-top:4px" onclick="changePass()">SIMPAN PASSWORD</button>
-        </div>
-
-        <!-- Import CSV -->
-        <div class="card">
-          <div class="card-title">IMPORT CSV</div>
-          <div style="font-size:0.76rem;color:var(--text2);margin-bottom:10px;line-height:1.6">
-            Format: kolom <strong style="color:var(--cyan)">nama</strong> dan <strong
-              style="color:var(--cyan)">sekolah</strong> (header wajib). Skor = 0.
-          </div>
-          <div
-            style="font-size:0.7rem;color:var(--text2);margin-bottom:12px;font-family:'Share Tech Mono';line-height:1.8;background:rgba(0,0,0,0.2);padding:8px 12px;border:1px solid var(--border)">
-            nama,sekolah<br>Budi Santoso,SMAN 1 Semarang
-          </div>
-          <div style="margin-bottom:10px">
-            <div class="form-label" style="margin-bottom:6px">MODE IMPORT</div>
-            <div class="import-mode-toggle">
-              <button class="import-mode-btn active" id="mode-btn-add" onclick="setImportMode('add')">TAMBAH</button>
-              <button class="import-mode-btn" id="mode-btn-replace" onclick="setImportMode('replace')">GANTI
-                SEMUA</button>
-            </div>
-            <div style="font-size:0.68rem;color:var(--text2);margin-top:4px" id="mode-desc">Data CSV ditambahkan ke
-              daftar yang ada.</div>
-          </div>
-          <div class="csv-dropzone" id="csv-dropzone" ondragover="csvDragOver(event)" ondragleave="csvDragLeave()"
-            ondrop="csvDrop(event)">
-            <input type="file" accept=".csv,text/csv" id="csv-file-input" onchange="csvFileSelected(event)">
-            <div class="csv-icon">📂</div>
-            <div class="csv-label">KLIK ATAU DRAG & DROP</div>
-            <div class="csv-sublabel">File .CSV (maks 2MB)</div>
-          </div>
-          <div id="csv-err-msg" class="csv-err-msg" style="display:none"></div>
-          <div id="csv-preview-wrap" style="display:none">
-            <div class="csv-count" id="csv-count"></div>
-            <div class="csv-preview" id="csv-preview"></div>
-            <div class="csv-actions">
-              <button class="btn btn-green" onclick="confirmImport()">IMPORT SEKARANG</button>
-              <button class="btn btn-red btn-sm" onclick="clearCsvPreview()">BATAL</button>
-            </div>
-          </div>
-        </div>
+    <div class="lb-wrapper">
+      <div class="lb-header">
+        <div class="lb-title">LEADERBOARD</div>
+        <div class="lb-sub">ADMIN PANEL</div>
+        <div class="lb-divider"></div>
       </div>
 
-      <!-- RIGHT -->
-      <div>
-        <div class="card">
-          <div class="card-title" style="justify-content:space-between">
-            <span style="display:flex;align-items:center;gap:8px">
-              <span style="display:block;width:3px;height:14px;background:var(--cyan);flex-shrink:0"></span>
-              DAFTAR PESERTA
-            </span>
-            <span id="admin-count" style="font-family:'Share Tech Mono';font-size:0.72rem;color:var(--text2)">0
-              PESERTA</span>
+      <div class="lb-table-wrap">
+        <div class="lb-table-head">
+          <div>#</div>
+          <div>PESERTA</div>
+          <div class="col-school">SEKOLAH</div>
+          <div style="text-align:right">SKOR</div>
+          <div style="text-align:center">POIN</div>
+          <div style="text-align:center" class="col-chg">CHG</div>
+        </div>
+        <div id="lb-rows">
+          <div class="empty-state">[ MEMUAT DATA... ]</div>
+        </div>
+      </div>
+      <div class="last-update" id="last-update">—</div>
+    </div>
+
+    <!-- Import CSV collapsible -->
+    <div class="csv-panel">
+      <button class="csv-toggle" id="csv-toggle-btn" onclick="toggleCsv()">
+        📂 &nbsp;IMPORT CSV
+        <span class="csv-toggle-arrow">▼</span>
+      </button>
+      <div class="csv-body" id="csv-body">
+        <div style="font-size:0.76rem;color:var(--text2);margin-bottom:10px;line-height:1.6">
+          Format: kolom <strong style="color:var(--cyan)">nama</strong> dan
+          <strong style="color:var(--cyan)">sekolah</strong> (header wajib). Skor = 0.
+        </div>
+        <div style="font-size:0.7rem;color:var(--text2);margin-bottom:12px;font-family:'Share Tech Mono';line-height:1.8;background:rgba(0,0,0,0.2);padding:8px 12px;border:1px solid var(--border)">
+          nama,sekolah<br>Budi Santoso,SMAN 1 Semarang
+        </div>
+        <div style="margin-bottom:10px">
+          <div style="font-size:0.7rem;color:var(--text2);letter-spacing:1.5px;margin-bottom:6px">MODE IMPORT</div>
+          <div class="import-mode-toggle">
+            <button class="import-mode-btn active" id="mode-btn-add" onclick="setImportMode('add')">TAMBAH</button>
+            <button class="import-mode-btn" id="mode-btn-replace" onclick="setImportMode('replace')">GANTI SEMUA</button>
           </div>
-          <div class="form-group">
-            <input class="form-input" type="text" id="admin-search" placeholder="Cari nama / sekolah..."
-              oninput="renderAdminTable()">
-          </div>
-          <div class="admin-table-wrap">
-            <table class="admin-table">
-              <thead>
-                <tr>
-                  <th>#</th>
-                  <th>NAMA</th>
-                  <th>SEKOLAH</th>
-                  <th>SKOR</th>
-                  <th>AKSI</th>
-                </tr>
-              </thead>
-              <tbody id="admin-tbody"></tbody>
-            </table>
+          <div style="font-size:0.68rem;color:var(--text2);margin-top:4px" id="mode-desc">Data CSV ditambahkan ke daftar yang ada.</div>
+        </div>
+        <div class="csv-dropzone" id="csv-dropzone"
+          ondragover="csvDragOver(event)" ondragleave="csvDragLeave()" ondrop="csvDrop(event)">
+          <input type="file" accept=".csv,text/csv" id="csv-file-input" onchange="csvFileSelected(event)">
+          <div class="csv-icon">📂</div>
+          <div class="csv-label">KLIK ATAU DRAG & DROP</div>
+          <div class="csv-sublabel">File .CSV (maks 2MB)</div>
+        </div>
+        <div id="csv-err-msg" class="csv-err-msg" style="display:none"></div>
+        <div id="csv-preview-wrap" style="display:none">
+          <div class="csv-count" id="csv-count"></div>
+          <div class="csv-preview" id="csv-preview"></div>
+          <div class="csv-actions">
+            <button class="btn btn-green" onclick="confirmImport()">IMPORT SEKARANG</button>
+            <button class="btn btn-red btn-sm" onclick="clearCsvPreview()">BATAL</button>
           </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <!-- MODAL DELETE -->
-  <div class="modal-overlay" id="modal-delete">
-    <div class="modal-box">
-      <div class="modal-title">⚠ HAPUS PESERTA</div>
-      <p style="font-size:0.88rem;color:var(--text2);line-height:1.6">Yakin hapus <strong id="del-name"
-          style="color:var(--cyan)"></strong>?</p>
-      <div class="modal-actions">
-        <button class="btn btn-cyan" onclick="closeModal('modal-delete')">BATAL</button>
-        <button class="btn btn-red" id="confirm-del-btn" onclick="confirmDelete()">YA, HAPUS</button>
+    </div><!-- end section-individual -->
+
+    <!-- ── TEAM TAB ── -->
+    <div id="section-team" style="display:none">
+
+    <div class="lb-wrapper">
+      <div class="lb-header">
+        <div class="lb-title">TEAM LEADERBOARD</div>
+        <div class="lb-sub">ADMIN PANEL</div>
+        <div class="lb-divider"></div>
+      </div>
+
+      <div class="lb-table-wrap">
+        <div class="lb-table-head" id="team-table-head">
+          <div>#</div>
+          <div>TIM</div>
+          <div class="col-school">SEKOLAH</div>
+          <div style="text-align:right">SKOR</div>
+          <div style="text-align:center">POIN</div>
+          <div style="text-align:center" class="col-chg">CHG</div>
+        </div>
+        <div id="team-lb-rows">
+          <div class="empty-state">[ MEMUAT DATA... ]</div>
+        </div>
+      </div>
+      <div class="last-update" id="team-last-update">—</div>
+    </div>
+
+    <!-- Team Import CSV collapsible -->
+    <div class="csv-panel">
+      <button class="csv-toggle" id="team-csv-toggle-btn" onclick="toggleTeamCsv()">
+        📂 &nbsp;IMPORT CSV TIM
+        <span class="csv-toggle-arrow">▼</span>
+      </button>
+      <div class="csv-body" id="team-csv-body">
+        <div style="font-size:0.76rem;color:var(--text2);margin-bottom:10px;line-height:1.6">
+          Format: kolom <strong style="color:var(--cyan)">nama</strong> dan
+          <strong style="color:var(--cyan)">sekolah</strong> (header wajib). Skor = 0.
+        </div>
+        <div style="font-size:0.7rem;color:var(--text2);margin-bottom:12px;font-family:'Share Tech Mono';line-height:1.8;background:rgba(0,0,0,0.2);padding:8px 12px;border:1px solid var(--border)">
+          nama,sekolah<br>Tim Alpha,SMAN 1 Semarang
+        </div>
+        <div style="margin-bottom:10px">
+          <div style="font-size:0.7rem;color:var(--text2);letter-spacing:1.5px;margin-bottom:6px">MODE IMPORT</div>
+          <div class="import-mode-toggle">
+            <button class="import-mode-btn active" id="team-mode-btn-add" onclick="setTeamImportMode('add')">TAMBAH</button>
+            <button class="import-mode-btn" id="team-mode-btn-replace" onclick="setTeamImportMode('replace')">GANTI SEMUA</button>
+          </div>
+          <div style="font-size:0.68rem;color:var(--text2);margin-top:4px" id="team-mode-desc">Data CSV ditambahkan ke daftar yang ada.</div>
+        </div>
+        <div class="csv-dropzone" id="team-csv-dropzone"
+          ondragover="teamCsvDragOver(event)" ondragleave="teamCsvDragLeave()" ondrop="teamCsvDrop(event)">
+          <input type="file" accept=".csv,text/csv" id="team-csv-file-input" onchange="teamCsvFileSelected(event)">
+          <div class="csv-icon">📂</div>
+          <div class="csv-label">KLIK ATAU DRAG & DROP</div>
+          <div class="csv-sublabel">File .CSV (maks 2MB)</div>
+        </div>
+        <div id="team-csv-err-msg" class="csv-err-msg" style="display:none"></div>
+        <div id="team-csv-preview-wrap" style="display:none">
+          <div class="csv-count" id="team-csv-count"></div>
+          <div class="csv-preview" id="team-csv-preview"></div>
+          <div class="csv-actions">
+            <button class="btn btn-green" onclick="confirmTeamImport()">IMPORT SEKARANG</button>
+            <button class="btn btn-red btn-sm" onclick="clearTeamCsvPreview()">BATAL</button>
+          </div>
+        </div>
       </div>
     </div>
+
+    </div><!-- end section-team -->
+
   </div>
 
   <div class="toast-container" id="toast-container"></div>
 
   <script>
-    // ─── STATE ────────────────────────────────────────────────────────────────────
-    let participants = [];
-    let deleteTarget = null;
+    let users = [];
+    let prevRanks = {};
+    let scoreChanges = {};
+    let prevScores = {};
+    const changeExpiry = {};
+    const teamChangeExpiry = {};
+
+    function clearChange(id) {
+      scoreChanges[id] = 0; delete changeExpiry[id];
+      const row = document.querySelector(`#lb-rows .lb-row[data-uid="${id}"]`);
+      if (row) { const b = row.querySelector('.change-badge'); if (b) { b.className='change-badge same'; b.textContent='●'; } }
+    }
+    function scheduleExpiry(id) {
+      if (changeExpiry[id]) clearTimeout(changeExpiry[id]);
+      changeExpiry[id] = setTimeout(() => clearChange(id), 5000);
+    }
+    function clearTeamChange(id) {
+      teamScoreChanges[id] = 0; delete teamChangeExpiry[id];
+      const row = document.querySelector(`#team-lb-rows .lb-row[data-uid="${id}"]`);
+      if (row) { const b = row.querySelector('.change-badge'); if (b) { b.className='change-badge same'; b.textContent='●'; } }
+    }
+    function scheduleTeamExpiry(id) {
+      if (teamChangeExpiry[id]) clearTimeout(teamChangeExpiry[id]);
+      teamChangeExpiry[id] = setTimeout(() => clearTeamChange(id), 5000);
+    }
+    let schoolVisible = true;
     let csvParsed = [];
     let importMode = 'add';
 
-    // ─── UTILS ────────────────────────────────────────────────────────────────────
+    function getSorted() { return [...users].sort((a, b) => b.score - a.score); }
+
     function escHtml(s) {
-      return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+      return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
     }
-    function getSorted() { return [...participants].sort((a, b) => b.score - a.score); }
-    function openModal(id) { document.getElementById(id).classList.add('open'); }
-    function closeModal(id) { document.getElementById(id).classList.remove('open'); }
 
     function toast(msg, type = 'success') {
-      const c = document.getElementById('toast-container');
       const t = document.createElement('div');
-      t.className = `toast ${type}`;
-      t.innerHTML = `<span>${type === 'success' ? '✓' : '✕'}</span> ${escHtml(msg)}`;
-      c.appendChild(t);
-      setTimeout(() => t.remove(), 3100);
+      t.style.cssText = `background:rgba(4,22,44,0.95);border:1px solid ${type==='success'?'#00ff88':'#ff3366'};padding:10px 18px;font-family:Rajdhani;font-size:0.9rem;color:#cceeff;display:flex;gap:8px;align-items:center;clip-path:polygon(6px 0,100% 0,calc(100% - 6px) 100%,0 100%);`;
+      t.textContent = (type === 'success' ? '✓ ' : '✕ ') + msg;
+      document.getElementById('toast-container').appendChild(t);
+      setTimeout(() => t.remove(), 3000);
     }
 
-    function setLoading(btnId, loading) {
-      const btn = document.getElementById(btnId);
-      if (btn) btn.disabled = loading;
-    }
-
-    // ─── API ──────────────────────────────────────────────────────────────────────
+    // ── API ──
     async function api(method, path, body) {
-      try {
-        const opts = { method, headers: { 'Content-Type': 'application/json' } };
-        if (body) opts.body = JSON.stringify(body);
-        const res = await fetch(path, opts);
-        const data = await res.json();
-        if (!res.ok) throw new Error(data.error || 'Server error');
-        return data;
-      } catch (e) {
-        throw e;
-      }
+      const opts = { method, headers: { 'Content-Type': 'application/json' } };
+      if (body) opts.body = JSON.stringify(body);
+      const res = await fetch(path, opts);
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || 'Server error');
+      return data;
     }
 
-    // ─── AUTH ─────────────────────────────────────────────────────────────────────
+    // ── AUTH ──
     async function doLogin() {
       const pass = document.getElementById('gate-pass').value;
       const errEl = document.getElementById('gate-err');
       const btn = document.getElementById('login-btn');
       if (!pass) { errEl.textContent = 'Masukkan password'; return; }
-
-      btn.disabled = true;
-      btn.textContent = 'LOGGING IN...';
-      errEl.textContent = '';
-
+      btn.disabled = true; btn.textContent = 'LOGGING IN...'; errEl.textContent = '';
       try {
         await api('POST', '/api/login', { password: pass });
-        // Success — hide gate, show admin
         document.getElementById('gate-page').style.display = 'none';
         document.getElementById('main-nav').style.display = '';
         document.getElementById('admin-content').style.display = '';
-        await loadParticipants();
-        populateQsSelect();
-      } catch (e) {
+        await loadUsers();
+        setInterval(poll, 3000);
+      } catch(e) {
         errEl.textContent = e.message || 'Password salah';
         document.getElementById('gate-pass').value = '';
         document.getElementById('gate-pass').focus();
       } finally {
-        btn.disabled = false;
-        btn.textContent = 'LOGIN →';
+        btn.disabled = false; btn.textContent = 'LOGIN →';
       }
     }
 
     async function doLogout() {
-      await api('POST', '/api/logout');
+      try { await api('POST', '/api/logout'); } catch(e) {}
       document.getElementById('gate-page').style.display = 'flex';
       document.getElementById('main-nav').style.display = 'none';
       document.getElementById('admin-content').style.display = 'none';
@@ -1058,152 +710,170 @@
       toast('Berhasil logout');
     }
 
-    async function changePass() {
-      const oldPw = document.getElementById('cp-old').value;
-      const newPw = document.getElementById('cp-new').value;
-      try {
-        await api('POST', '/api/change-password', { oldPassword: oldPw, newPassword: newPw });
-        document.getElementById('cp-old').value = '';
-        document.getElementById('cp-new').value = '';
-        toast('Password berhasil diubah');
-      } catch (e) {
-        toast(e.message, 'error');
-      }
+    // ── SCHOOL TOGGLE ──
+    function toggleSchool() {
+      schoolVisible = !schoolVisible;
+      const btn = document.getElementById('school-toggle');
+      btn.textContent = `SEKOLAH: ${schoolVisible ? 'ON' : 'OFF'}`;
+      btn.classList.toggle('off', !schoolVisible);
+      applySchoolVisibility();
     }
 
-    // ─── PARTICIPANTS ─────────────────────────────────────────────────────────────
-    async function loadParticipants() {
-      const data = await api('GET', '/api/participants');
-      participants = data;
-      renderAdminTable();
-      populateQsSelect();
+    function applySchoolVisibility() {
+      const mobile = window.innerWidth <= 640;
+      document.querySelectorAll('.col-school').forEach(el => {
+        el.style.display = (!schoolVisible || mobile) ? 'none' : '';
+      });
+      document.querySelectorAll('.col-school-sub').forEach(el => {
+        el.style.display = (schoolVisible && mobile) ? 'block' : 'none';
+      });
+      const head = document.querySelector('.lb-table-head');
+      if (head) head.style.gridTemplateColumns = schoolVisible
+        ? '48px 1fr 1fr 80px 66px 72px'
+        : '48px 1fr 80px 66px 72px';
+      document.querySelectorAll('.lb-row').forEach(el => {
+        el.style.gridTemplateColumns = schoolVisible
+          ? '48px 1fr 1fr 80px 66px 72px'
+          : '48px 1fr 80px 66px 72px';
+      });
+    }
+    window.addEventListener('resize', applySchoolVisibility);
+
+    // ── LOAD ──
+    async function loadUsers() {
+      const fresh = await api('GET', '/api/participants');
+      fresh.forEach(u => { prevScores[u.id] = u.score; });
+      users = fresh;
+      renderLeaderboard();
+      applySchoolVisibility();
     }
 
-    function renderAdminTable() {
-      const q = (document.getElementById('admin-search')?.value || '').toLowerCase();
+    // ── RENDER ──
+    function renderLeaderboard() {
+      const q = (document.getElementById('search-input')?.value || '').toLowerCase();
       const sorted = getSorted();
       const filtered = q ? sorted.filter(u =>
         u.name.toLowerCase().includes(q) || (u.school || '').toLowerCase().includes(q)
       ) : sorted;
 
-      document.getElementById('admin-count').textContent = `${participants.length} PESERTA`;
-      const tbody = document.getElementById('admin-tbody');
+      const container = document.getElementById('lb-rows');
       if (!filtered.length) {
-        tbody.innerHTML = `<tr><td colspan="5" style="text-align:center;color:var(--text2);padding:32px;font-size:0.78rem;letter-spacing:2px">BELUM ADA DATA</td></tr>`;
-        return;
+        container.innerHTML = `<div class="empty-state">[ TIDAK ADA DATA ]</div>`;
+        prevRanks = {}; return;
       }
-      tbody.innerHTML = filtered.map(u => `
-    <tr>
-      <td style="color:var(--text2);font-family:'Share Tech Mono';font-size:0.78rem">${sorted.indexOf(u) + 1}</td>
-      <td><strong>${escHtml(u.name)}</strong></td>
-      <td><span class="tag-school" title="${escHtml(u.school || '')}">${escHtml(u.school || '—')}</span></td>
-      <td><span class="score-cell">${u.score}</span></td>
-      <td><div class="td-actions">
-        <button class="btn btn-cyan btn-sm" onclick="editUser('${u.id}')">EDIT</button>
-        <button class="btn btn-red btn-sm" onclick="promptDelete('${u.id}')">HAPUS</button>
-      </div></td>
-    </tr>`).join('');
-    }
 
-    function populateQsSelect() {
-      const sel = document.getElementById('qs-user');
-      sel.innerHTML = `<option value="">— Pilih Peserta —</option>` +
-        getSorted().map(u => `<option value="${u.id}">${escHtml(u.name)} (${u.score})</option>`).join('');
-    }
+      const oldPositions = {};
+      container.querySelectorAll('.lb-row[data-uid]').forEach(el => {
+        oldPositions[el.dataset.uid] = el.getBoundingClientRect().top;
+      });
 
-    // ─── CRUD ─────────────────────────────────────────────────────────────────────
-    async function saveUser() {
-      const id = document.getElementById('edit-id').value;
-      const name = document.getElementById('f-name').value.trim();
-      const school = document.getElementById('f-school').value.trim();
-      const score = parseInt(document.getElementById('f-score').value) || 0;
-      if (!name) { toast('Nama tidak boleh kosong', 'error'); return; }
-      if (!school) { toast('Sekolah tidak boleh kosong', 'error'); return; }
+      const newRanks = {};
+      filtered.forEach(u => { newRanks[u.id] = sorted.indexOf(u) + 1; });
 
-      setLoading('save-btn', true);
-      try {
-        if (id) {
-          const updated = await api('PUT', `/api/participants/${id}`, { name, school, score });
-          const idx = participants.findIndex(u => u.id === id);
-          if (idx !== -1) participants[idx] = updated;
-          toast('Peserta berhasil diperbarui');
-        } else {
-          const created = await api('POST', '/api/participants', { name, school, score });
-          participants.push(created);
-          toast('Peserta berhasil ditambahkan');
+      container.innerHTML = filtered.map(u => {
+        const rank = newRanks[u.id];
+        const delta = scoreChanges[u.id] || 0;
+        let cb;
+        if (delta > 0) cb = `<span class="change-badge up">▲+${delta}</span>`;
+        else if (delta < 0) cb = `<span class="change-badge down">▼${delta}</span>`;
+        else cb = `<span class="change-badge same">●</span>`;
+
+        return `
+        <div class="lb-row" data-uid="${u.id}">
+          <div class="row-num">${rank}</div>
+          <div>
+            <div class="row-name">${escHtml(u.name)}</div>
+            <div class="row-school col-school-sub" style="font-size:0.72rem;color:var(--text2)">${escHtml(u.school||'—')}</div>
+          </div>
+          <div class="row-school col-school" style="font-size:0.8rem;color:var(--text2);align-self:center">${escHtml(u.school||'—')}</div>
+          <div class="row-score">${u.score}</div>
+          <div class="arrow-wrap">
+            <button class="arrow-btn arrow-up" onclick="adjustScore('${u.id}','add')" title="+1 poin">▲</button>
+            <button class="arrow-btn arrow-down" onclick="adjustScore('${u.id}','sub')" title="-1 poin">▼</button>
+          </div>
+          <div style="text-align:center;align-self:center" class="col-chg">${cb}</div>
+        </div>`;
+      }).join('');
+
+      // FLIP animation
+      container.querySelectorAll('.lb-row[data-uid]').forEach(el => {
+        const id = el.dataset.uid;
+        const newTop = el.getBoundingClientRect().top;
+        const oldTop = oldPositions[id];
+        const moved = (prevRanks[id] !== undefined && newRanks[id] !== undefined) ? prevRanks[id] - newRanks[id] : 0;
+        if (oldTop !== undefined && Math.abs(newTop - oldTop) > 2) {
+          const delta = oldTop - newTop;
+          el.style.transition = 'none'; el.style.transform = `translateY(${delta}px)`;
+          requestAnimationFrame(() => requestAnimationFrame(() => {
+            el.style.transition = 'transform 0.55s cubic-bezier(0.4,0,0.2,1)';
+            el.style.transform = 'translateY(0)';
+            if (moved > 0) { el.classList.add('rank-up'); setTimeout(() => el.classList.remove('rank-up'), 800); }
+            else if (moved < 0) { el.classList.add('rank-down'); setTimeout(() => el.classList.remove('rank-down'), 800); }
+            setTimeout(() => { el.style.transition = ''; el.style.transform = ''; }, 600);
+          }));
+        } else if (oldTop === undefined) {
+          el.style.opacity = '0'; el.style.transform = 'translateX(-14px)';
+          requestAnimationFrame(() => requestAnimationFrame(() => {
+            el.style.transition = 'opacity 0.4s ease,transform 0.4s ease';
+            el.style.opacity = '1'; el.style.transform = 'translateX(0)';
+            setTimeout(() => { el.style.transition = ''; el.style.transform = ''; el.style.opacity = ''; }, 450);
+          }));
         }
-        resetForm(); renderAdminTable(); populateQsSelect();
-      } catch (e) {
-        toast(e.message, 'error');
-      } finally {
-        setLoading('save-btn', false);
-      }
+      });
+
+      prevRanks = { ...newRanks };
+      applySchoolVisibility();
+      document.getElementById('last-update').textContent = `LAST UPDATE: ${new Date().toLocaleTimeString('id-ID')}`;
     }
 
-    function editUser(id) {
-      const u = participants.find(u => u.id === id);
-      if (!u) return;
-      document.getElementById('edit-id').value = u.id;
-      document.getElementById('f-name').value = u.name;
-      document.getElementById('f-school').value = u.school || '';
-      document.getElementById('f-score').value = u.score;
-      document.getElementById('form-card-title').textContent = 'EDIT PESERTA';
-      document.getElementById('save-btn').textContent = 'UPDATE';
-      document.getElementById('cancel-btn').style.display = 'block';
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    function resetForm() {
-      document.getElementById('edit-id').value = '';
-      document.getElementById('f-name').value = '';
-      document.getElementById('f-school').value = '';
-      document.getElementById('f-score').value = '';
-      document.getElementById('form-card-title').textContent = 'TAMBAH PESERTA';
-      document.getElementById('save-btn').textContent = 'SIMPAN';
-      document.getElementById('cancel-btn').style.display = 'none';
-    }
-
-    function promptDelete(id) {
-      deleteTarget = id;
-      const u = participants.find(u => u.id === id);
-      document.getElementById('del-name').textContent = u?.name || '';
-      openModal('modal-delete');
-    }
-
-    async function confirmDelete() {
-      setLoading('confirm-del-btn', true);
+    // ── ADJUST SCORE +1 / -1 ──
+    async function adjustScore(id, op) {
       try {
-        await api('DELETE', `/api/participants/${deleteTarget}`);
-        participants = participants.filter(u => u.id !== deleteTarget);
-        renderAdminTable(); populateQsSelect();
-        closeModal('modal-delete'); toast('Peserta dihapus');
-      } catch (e) {
+        const sortedBefore = getSorted();
+        sortedBefore.forEach((u, i) => { prevRanks[u.id] = i + 1; });
+        const result = await api('PATCH', `/api/participants/${id}/score`, { op, value: 1 });
+        const u = users.find(u => u.id === id);
+        const oldScore = prevScores[id] ?? (u?.score ?? 0);
+        if (u) u.score = result.score;
+        // Accumulate score change
+        scoreChanges[id] = (scoreChanges[id] || 0) + (result.score - oldScore);
+        scheduleExpiry(id);
+        prevScores[id] = result.score;
+        renderLeaderboard();
+        toast(`${u?.name || 'Peserta'} → ${result.score} poin`);
+      } catch(e) {
         toast(e.message, 'error');
-      } finally {
-        setLoading('confirm-del-btn', false);
       }
     }
 
-    async function quickScore() {
-      const id = document.getElementById('qs-user').value;
-      const op = document.getElementById('qs-op').value;
-      const val = parseInt(document.getElementById('qs-val').value);
-      if (!id) { toast('Pilih peserta terlebih dahulu', 'error'); return; }
-      if (isNaN(val) || val < 0) { toast('Masukkan nilai yang valid', 'error'); return; }
-
+    // ── POLL ──
+    async function poll() {
       try {
-        const result = await api('PATCH', `/api/participants/${id}/score`, { op, value: val });
-        const u = participants.find(u => u.id === id);
-        if (u) { u.score = result.score; }
-        renderAdminTable(); populateQsSelect();
-        toast(`Skor ${u?.name || 'peserta'} → ${result.score}`);
-        document.getElementById('qs-val').value = '';
-      } catch (e) {
-        toast(e.message, 'error');
-      }
+        const fresh = await api('GET', '/api/participants');
+        if (JSON.stringify(fresh) !== JSON.stringify(users)) {
+          // Accumulate any external score changes
+          fresh.forEach(u => {
+            if (prevScores[u.id] !== undefined && u.score !== prevScores[u.id]) {
+              scoreChanges[u.id] = (scoreChanges[u.id] || 0) + (u.score - prevScores[u.id]);
+              scheduleExpiry(u.id);
+            }
+          });
+          const sortedBefore = getSorted();
+          sortedBefore.forEach((u, i) => { prevRanks[u.id] = i + 1; });
+          fresh.forEach(u => { prevScores[u.id] = u.score; });
+          users = fresh;
+          renderLeaderboard();
+        }
+      } catch(e) {}
     }
 
-    // ─── CSV ──────────────────────────────────────────────────────────────────────
+    // ── CSV TOGGLE ──
+    function toggleCsv() {
+      document.getElementById('csv-toggle-btn').classList.toggle('open');
+      document.getElementById('csv-body').classList.toggle('open');
+    }
+
+    // ── CSV ──
     function setImportMode(mode) {
       importMode = mode;
       document.getElementById('mode-btn-add').classList.toggle('active', mode === 'add');
@@ -1212,6 +882,7 @@
         ? 'Data CSV ditambahkan ke daftar yang ada.'
         : 'Semua data lama dihapus dan diganti CSV.';
     }
+
     function csvDragOver(e) { e.preventDefault(); document.getElementById('csv-dropzone').classList.add('drag-over'); }
     function csvDragLeave() { document.getElementById('csv-dropzone').classList.remove('drag-over'); }
     function csvDrop(e) { e.preventDefault(); csvDragLeave(); if (e.dataTransfer.files[0]) processCSVFile(e.dataTransfer.files[0]); }
@@ -1223,10 +894,11 @@
       if (file.size > 2 * 1024 * 1024) { showCsvErr('Ukuran file terlalu besar (maks 2MB)'); return; }
       const r = new FileReader(); r.onload = e => parseCSV(e.target.result); r.readAsText(file, 'UTF-8');
     }
+
     function parseCSV(text) {
-      const lines = text.replace(/\r\n/g, '\n').replace(/\r/g, '\n').split('\n').filter(l => l.trim());
+      const lines = text.replace(/\r\n/g,'\n').replace(/\r/g,'\n').split('\n').filter(l => l.trim());
       if (lines.length < 2) { showCsvErr('CSV harus punya header dan minimal 1 baris data'); return; }
-      const header = lines[0].split(',').map(h => h.trim().toLowerCase().replace(/['"]/g, ''));
+      const header = lines[0].split(',').map(h => h.trim().toLowerCase().replace(/['"]/g,''));
       const namaIdx = header.findIndex(h => h === 'nama' || h === 'name');
       const sekolahIdx = header.findIndex(h => h === 'sekolah' || h === 'school' || h === 'asal sekolah');
       if (namaIdx === -1) { showCsvErr('Kolom "nama" tidak ditemukan'); return; }
@@ -1234,25 +906,49 @@
       const parsed = [], errors = [];
       for (let i = 1; i < lines.length; i++) {
         const cols = parseCSVLine(lines[i]);
-        const nama = (cols[namaIdx] || '').trim().replace(/^["']|["']$/g, '');
-        const sekolah = (cols[sekolahIdx] || '').trim().replace(/^["']|["']$/g, '');
-        if (!nama) { errors.push(`Baris ${i + 1}: nama kosong`); continue; }
-        if (!sekolah) { errors.push(`Baris ${i + 1}: sekolah kosong`); continue; }
+        const nama = (cols[namaIdx]||'').trim().replace(/^["']|["']$/g,'');
+        const sekolah = (cols[sekolahIdx]||'').trim().replace(/^["']|["']$/g,'');
+        if (!nama) { errors.push(`Baris ${i+1}: nama kosong`); continue; }
+        if (!sekolah) { errors.push(`Baris ${i+1}: sekolah kosong`); continue; }
         parsed.push({ nama, sekolah });
       }
-      if (!parsed.length) { showCsvErr('Tidak ada data valid.\n' + errors.slice(0, 3).join('\n')); return; }
+      if (!parsed.length) { showCsvErr('Tidak ada data valid.\n' + errors.slice(0,3).join('\n')); return; }
       csvParsed = parsed; showCsvPreview(parsed, errors);
     }
-    function parseCSVLine(line) { const r = []; let c = '', q = false; for (let i = 0; i < line.length; i++) { const ch = line[i]; if (ch === '"' && q && line[i + 1] === '"') { c += '"'; i++; } else if (ch === '"') { q = !q; } else if (ch === ',' && !q) { r.push(c); c = ''; } else { c += ch; } } r.push(c); return r; }
-    function showCsvErr(msg) { const el = document.getElementById('csv-err-msg'); el.textContent = '✕ ' + msg; el.style.display = 'block'; document.getElementById('csv-preview-wrap').style.display = 'none'; csvParsed = []; }
+
+    function parseCSVLine(line) {
+      const r = []; let c = '', q = false;
+      for (let i = 0; i < line.length; i++) {
+        const ch = line[i];
+        if (ch === '"' && q && line[i+1] === '"') { c += '"'; i++; }
+        else if (ch === '"') { q = !q; }
+        else if (ch === ',' && !q) { r.push(c); c = ''; }
+        else { c += ch; }
+      }
+      r.push(c); return r;
+    }
+
+    function showCsvErr(msg) {
+      const el = document.getElementById('csv-err-msg');
+      el.textContent = '✕ ' + msg; el.style.display = 'block';
+      document.getElementById('csv-preview-wrap').style.display = 'none';
+      csvParsed = [];
+    }
+
     function showCsvPreview(parsed, errors) {
       document.getElementById('csv-err-msg').style.display = 'none';
       const show = parsed.slice(0, 10);
       document.getElementById('csv-count').textContent = `✓ ${parsed.length} data siap diimport${errors.length ? ` (${errors.length} dilewati)` : ''}`;
-      document.getElementById('csv-preview').innerHTML = `<table><thead><tr><th>#</th><th>NAMA</th><th>SEKOLAH</th></tr></thead><tbody>${show.map((r, i) => `<tr><td style="color:var(--text2)">${i + 1}</td><td>${escHtml(r.nama)}</td><td>${escHtml(r.sekolah)}</td></tr>`).join('')}${parsed.length > 10 ? `<tr><td colspan="3" style="text-align:center;color:var(--text2);padding:6px">... dan ${parsed.length - 10} lainnya</td></tr>` : ''}</tbody></table>`;
+      document.getElementById('csv-preview').innerHTML = `<table><thead><tr><th>#</th><th>NAMA</th><th>SEKOLAH</th></tr></thead><tbody>${show.map((r,i) => `<tr><td style="color:var(--text2)">${i+1}</td><td>${escHtml(r.nama)}</td><td>${escHtml(r.sekolah)}</td></tr>`).join('')}${parsed.length > 10 ? `<tr><td colspan="3" style="text-align:center;color:var(--text2);padding:6px">... dan ${parsed.length-10} lainnya</td></tr>` : ''}</tbody></table>`;
       document.getElementById('csv-preview-wrap').style.display = 'block';
     }
-    function clearCsvPreview() { csvParsed = []; document.getElementById('csv-preview-wrap').style.display = 'none'; document.getElementById('csv-err-msg').style.display = 'none'; document.getElementById('csv-file-input').value = ''; }
+
+    function clearCsvPreview() {
+      csvParsed = [];
+      document.getElementById('csv-preview-wrap').style.display = 'none';
+      document.getElementById('csv-err-msg').style.display = 'none';
+      document.getElementById('csv-file-input').value = '';
+    }
 
     async function confirmImport() {
       if (!csvParsed.length) { toast('Tidak ada data', 'error'); return; }
@@ -1263,14 +959,261 @@
         });
         toast(`${result.imported} peserta berhasil diimport`);
         clearCsvPreview();
-        await loadParticipants();
-      } catch (e) {
+        await loadUsers();
+      } catch(e) {
         toast(e.message, 'error');
       }
     }
 
-    // ─── INIT ─────────────────────────────────────────────────────────────────────
-    // Check if already have active session
+    // ── TAB SWITCHING ──
+    let activeTab = 'individual';
+    function switchTab(tab) {
+      activeTab = tab;
+      document.getElementById('section-individual').style.display = tab === 'individual' ? '' : 'none';
+      document.getElementById('section-team').style.display = tab === 'team' ? '' : 'none';
+      document.getElementById('tab-individual').classList.toggle('active', tab === 'individual');
+      document.getElementById('tab-team').classList.toggle('active', tab === 'team');
+      document.getElementById('nav-btn-individual').classList.toggle('active', tab === 'individual');
+      document.getElementById('nav-btn-team').classList.toggle('active', tab === 'team');
+    }
+
+    // ── TEAM STATE ──
+    let teams = [];
+    let teamPrevRanks = {};
+    let teamScoreChanges = {};
+    let teamPrevScores = {};
+
+    function getTeamSorted() { return [...teams].sort((a, b) => b.score - a.score); }
+
+    async function loadTeams() {
+      const fresh = await api('GET', '/api/teams');
+      fresh.forEach(t => { teamPrevScores[t.id] = t.score; });
+      teams = fresh;
+      renderTeamLeaderboard();
+      applyTeamSchoolVisibility();
+    }
+
+    function applyTeamSchoolVisibility() {
+      const mobile = window.innerWidth <= 640;
+      const head = document.getElementById('team-table-head');
+      const cols = schoolVisible ? '48px 1fr 1fr 80px 66px 72px' : '48px 1fr 80px 66px 72px';
+      if (head) head.style.gridTemplateColumns = cols;
+      document.querySelectorAll('#team-lb-rows .lb-row').forEach(el => {
+        el.style.gridTemplateColumns = cols;
+      });
+    }
+    window.addEventListener('resize', applyTeamSchoolVisibility);
+
+    function renderTeamLeaderboard() {
+      const q = (document.getElementById('team-search-input')?.value || '').toLowerCase();
+      const sorted = getTeamSorted();
+      const filtered = q ? sorted.filter(t =>
+        t.name.toLowerCase().includes(q) || (t.school || '').toLowerCase().includes(q)
+      ) : sorted;
+
+      const container = document.getElementById('team-lb-rows');
+      if (!filtered.length) {
+        container.innerHTML = `<div class="empty-state">[ TIDAK ADA DATA TIM ]</div>`;
+        teamPrevRanks = {}; return;
+      }
+
+      const oldPositions = {};
+      container.querySelectorAll('.lb-row[data-uid]').forEach(el => {
+        oldPositions[el.dataset.uid] = el.getBoundingClientRect().top;
+      });
+
+      const newRanks = {};
+      filtered.forEach(t => { newRanks[t.id] = sorted.indexOf(t) + 1; });
+
+      container.innerHTML = filtered.map(t => {
+        const rank = newRanks[t.id];
+        const delta = teamScoreChanges[t.id] || 0;
+        let cb;
+        if (delta > 0) cb = `<span class="change-badge up">▲+${delta}</span>`;
+        else if (delta < 0) cb = `<span class="change-badge down">▼${delta}</span>`;
+        else cb = `<span class="change-badge same">●</span>`;
+
+        return `
+        <div class="lb-row" data-uid="${t.id}">
+          <div class="row-num">${rank}</div>
+          <div>
+            <div class="row-name">${escHtml(t.name)}</div>
+            <div class="row-school col-school-sub" style="font-size:0.72rem;color:var(--text2)">${escHtml(t.school||'—')}</div>
+          </div>
+          <div class="row-school col-school" style="font-size:0.8rem;color:var(--text2);align-self:center">${escHtml(t.school||'—')}</div>
+          <div class="row-score">${t.score}</div>
+          <div class="arrow-wrap">
+            <button class="arrow-btn arrow-up" onclick="adjustTeamScore('${t.id}','add')" title="+1 poin">▲</button>
+            <button class="arrow-btn arrow-down" onclick="adjustTeamScore('${t.id}','sub')" title="-1 poin">▼</button>
+          </div>
+          <div style="text-align:center;align-self:center" class="col-chg">${cb}</div>
+        </div>`;
+      }).join('');
+
+      // FLIP animation
+      container.querySelectorAll('.lb-row[data-uid]').forEach(el => {
+        const id = el.dataset.uid;
+        const newTop = el.getBoundingClientRect().top;
+        const oldTop = oldPositions[id];
+        const moved = (teamPrevRanks[id] !== undefined && newRanks[id] !== undefined) ? teamPrevRanks[id] - newRanks[id] : 0;
+        if (oldTop !== undefined && Math.abs(newTop - oldTop) > 2) {
+          const delta = oldTop - newTop;
+          el.style.transition = 'none'; el.style.transform = `translateY(${delta}px)`;
+          requestAnimationFrame(() => requestAnimationFrame(() => {
+            el.style.transition = 'transform 0.55s cubic-bezier(0.4,0,0.2,1)';
+            el.style.transform = 'translateY(0)';
+            if (moved > 0) { el.classList.add('rank-up'); setTimeout(() => el.classList.remove('rank-up'), 800); }
+            else if (moved < 0) { el.classList.add('rank-down'); setTimeout(() => el.classList.remove('rank-down'), 800); }
+            setTimeout(() => { el.style.transition = ''; el.style.transform = ''; }, 600);
+          }));
+        } else if (oldTop === undefined) {
+          el.style.opacity = '0'; el.style.transform = 'translateX(-14px)';
+          requestAnimationFrame(() => requestAnimationFrame(() => {
+            el.style.transition = 'opacity 0.4s ease,transform 0.4s ease';
+            el.style.opacity = '1'; el.style.transform = 'translateX(0)';
+            setTimeout(() => { el.style.transition = ''; el.style.transform = ''; el.style.opacity = ''; }, 450);
+          }));
+        }
+      });
+
+      teamPrevRanks = { ...newRanks };
+      applyTeamSchoolVisibility();
+      document.getElementById('team-last-update').textContent = `LAST UPDATE: ${new Date().toLocaleTimeString('id-ID')}`;
+    }
+
+    async function adjustTeamScore(id, op) {
+      try {
+        const sortedBefore = getTeamSorted();
+        sortedBefore.forEach((t, i) => { teamPrevRanks[t.id] = i + 1; });
+        const result = await api('PATCH', `/api/teams/${id}/score`, { op, value: 1 });
+        const t = teams.find(t => t.id === id);
+        const oldScore = teamPrevScores[id] ?? (t?.score ?? 0);
+        if (t) t.score = result.score;
+        teamScoreChanges[id] = (teamScoreChanges[id] || 0) + (result.score - oldScore);
+        scheduleTeamExpiry(id);
+        teamPrevScores[id] = result.score;
+        renderTeamLeaderboard();
+        toast(`${t?.name || 'Tim'} → ${result.score} poin`);
+      } catch(e) {
+        toast(e.message, 'error');
+      }
+    }
+
+    // Team poll
+    async function pollTeams() {
+      try {
+        const fresh = await api('GET', '/api/teams');
+        if (JSON.stringify(fresh) !== JSON.stringify(teams)) {
+          fresh.forEach(t => {
+            if (teamPrevScores[t.id] !== undefined && t.score !== teamPrevScores[t.id]) {
+              teamScoreChanges[t.id] = (teamScoreChanges[t.id] || 0) + (t.score - teamPrevScores[t.id]);
+              scheduleTeamExpiry(t.id);
+            }
+          });
+          const sortedBefore = getTeamSorted();
+          sortedBefore.forEach((t, i) => { teamPrevRanks[t.id] = i + 1; });
+          fresh.forEach(t => { teamPrevScores[t.id] = t.score; });
+          teams = fresh;
+          renderTeamLeaderboard();
+        }
+      } catch(e) {}
+    }
+
+    // ── TEAM CSV ──
+    let teamCsvParsed = [];
+    let teamImportMode = 'add';
+
+    function toggleTeamCsv() {
+      document.getElementById('team-csv-toggle-btn').classList.toggle('open');
+      document.getElementById('team-csv-body').classList.toggle('open');
+    }
+
+    function setTeamImportMode(mode) {
+      teamImportMode = mode;
+      document.getElementById('team-mode-btn-add').classList.toggle('active', mode === 'add');
+      document.getElementById('team-mode-btn-replace').classList.toggle('active', mode === 'replace');
+      document.getElementById('team-mode-desc').textContent = mode === 'add'
+        ? 'Data CSV ditambahkan ke daftar yang ada.'
+        : 'Semua data lama dihapus dan diganti CSV.';
+    }
+
+    function teamCsvDragOver(e) { e.preventDefault(); document.getElementById('team-csv-dropzone').classList.add('drag-over'); }
+    function teamCsvDragLeave() { document.getElementById('team-csv-dropzone').classList.remove('drag-over'); }
+    function teamCsvDrop(e) { e.preventDefault(); teamCsvDragLeave(); if (e.dataTransfer.files[0]) processTeamCSVFile(e.dataTransfer.files[0]); }
+    function teamCsvFileSelected(e) { if (e.target.files[0]) processTeamCSVFile(e.target.files[0]); }
+
+    function processTeamCSVFile(file) {
+      document.getElementById('team-csv-err-msg').style.display = 'none';
+      if (!file.name.toLowerCase().endsWith('.csv') && file.type !== 'text/csv') { showTeamCsvErr('File harus berformat .CSV'); return; }
+      if (file.size > 2 * 1024 * 1024) { showTeamCsvErr('Ukuran file terlalu besar (maks 2MB)'); return; }
+      const r = new FileReader(); r.onload = e => parseTeamCSV(e.target.result); r.readAsText(file, 'UTF-8');
+    }
+
+    function parseTeamCSV(text) {
+      const lines = text.replace(/\r\n/g,'\n').replace(/\r/g,'\n').split('\n').filter(l => l.trim());
+      if (lines.length < 2) { showTeamCsvErr('CSV harus punya header dan minimal 1 baris data'); return; }
+      const header = lines[0].split(',').map(h => h.trim().toLowerCase().replace(/['"]/g,''));
+      const namaIdx = header.findIndex(h => h === 'nama' || h === 'name');
+      const sekolahIdx = header.findIndex(h => h === 'sekolah' || h === 'school' || h === 'asal sekolah');
+      if (namaIdx === -1) { showTeamCsvErr('Kolom "nama" tidak ditemukan'); return; }
+      if (sekolahIdx === -1) { showTeamCsvErr('Kolom "sekolah" tidak ditemukan'); return; }
+      const parsed = [], errors = [];
+      for (let i = 1; i < lines.length; i++) {
+        const cols = parseCSVLine(lines[i]);
+        const nama = (cols[namaIdx]||'').trim().replace(/^["']|["']$/g,'');
+        const sekolah = (cols[sekolahIdx]||'').trim().replace(/^["']|["']$/g,'');
+        if (!nama) { errors.push(`Baris ${i+1}: nama kosong`); continue; }
+        if (!sekolah) { errors.push(`Baris ${i+1}: sekolah kosong`); continue; }
+        parsed.push({ nama, sekolah });
+      }
+      if (!parsed.length) { showTeamCsvErr('Tidak ada data valid.\n' + errors.slice(0,3).join('\n')); return; }
+      teamCsvParsed = parsed;
+      document.getElementById('team-csv-err-msg').style.display = 'none';
+      const show = parsed.slice(0, 10);
+      document.getElementById('team-csv-count').textContent = `✓ ${parsed.length} tim siap diimport${errors.length ? ` (${errors.length} dilewati)` : ''}`;
+      document.getElementById('team-csv-preview').innerHTML = `<table><thead><tr><th>#</th><th>NAMA TIM</th><th>SEKOLAH</th></tr></thead><tbody>${show.map((r,i) => `<tr><td style="color:var(--text2)">${i+1}</td><td>${escHtml(r.nama)}</td><td>${escHtml(r.sekolah)}</td></tr>`).join('')}${parsed.length > 10 ? `<tr><td colspan="3" style="text-align:center;color:var(--text2);padding:6px">... dan ${parsed.length-10} lainnya</td></tr>` : ''}</tbody></table>`;
+      document.getElementById('team-csv-preview-wrap').style.display = 'block';
+    }
+
+    function showTeamCsvErr(msg) {
+      const el = document.getElementById('team-csv-err-msg');
+      el.textContent = '✕ ' + msg; el.style.display = 'block';
+      document.getElementById('team-csv-preview-wrap').style.display = 'none';
+      teamCsvParsed = [];
+    }
+
+    function clearTeamCsvPreview() {
+      teamCsvParsed = [];
+      document.getElementById('team-csv-preview-wrap').style.display = 'none';
+      document.getElementById('team-csv-err-msg').style.display = 'none';
+      document.getElementById('team-csv-file-input').value = '';
+    }
+
+    async function confirmTeamImport() {
+      if (!teamCsvParsed.length) { toast('Tidak ada data', 'error'); return; }
+      try {
+        const result = await api('POST', '/api/teams/import', {
+          participants: teamCsvParsed.map(r => ({ name: r.nama, school: r.sekolah })),
+          mode: teamImportMode
+        });
+        toast(`${result.imported} tim berhasil diimport`);
+        clearTeamCsvPreview();
+        await loadTeams();
+      } catch(e) {
+        toast(e.message, 'error');
+      }
+    }
+
+    // ── PARTICLES ──
+    for (let i = 0; i < 14; i++) {
+      const p = document.createElement('div'); p.className = 'particle';
+      const sz = Math.random()*2.5+1, x = Math.random()*100, y = Math.random()*100;
+      const dur = Math.random()*20+15, del = Math.random()*10, op = Math.random()*0.35+0.05;
+      p.style.cssText = `width:${sz}px;height:${sz}px;left:${x}%;top:${y}%;background:rgba(0,229,255,${op});animation:float ${dur}s ${del}s infinite linear;`;
+      document.body.appendChild(p);
+    }
+
+    // ── INIT ──
     (async () => {
       try {
         const me = await api('GET', '/api/me');
@@ -1278,15 +1221,17 @@
           document.getElementById('gate-page').style.display = 'none';
           document.getElementById('main-nav').style.display = '';
           document.getElementById('admin-content').style.display = '';
-          await loadParticipants();
+          await loadUsers();
+          await loadTeams();
+          setInterval(poll, 3000);
+          setInterval(pollTeams, 3000);
         } else {
           setTimeout(() => document.getElementById('gate-pass').focus(), 100);
         }
-      } catch (e) {
+      } catch(e) {
         setTimeout(() => document.getElementById('gate-pass').focus(), 100);
       }
     })();
   </script>
 </body>
-
 </html>

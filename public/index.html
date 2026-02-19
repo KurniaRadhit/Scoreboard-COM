@@ -121,6 +121,13 @@
       display: flex;
       align-items: center;
       gap: 6px;
+      transition: all 0.2s;
+    }
+
+    .nav-badge.off {
+      background: rgba(255, 51, 102, 0.1);
+      border-color: rgba(255, 51, 102, 0.4);
+      color: var(--red);
     }
 
     .live-dot {
@@ -516,6 +523,9 @@
   <nav>
     <div class="nav-logo">⚡ CLASH OF MINDS</div>
     <div class="nav-right">
+      <button class="nav-badge" id="school-toggle" onclick="toggleSchool()" style="cursor:pointer;border:none;background:rgba(0,229,255,0.12)">
+        SEKOLAH: ON
+      </button>
       <div class="nav-badge">
         <div class="live-dot"></div>LIVE
       </div>
@@ -526,23 +536,6 @@
     <div class="lb-header">
       <div class="lb-title">LEADERBOARD</div>
       <div class="lb-divider"></div>
-    </div>
-    <div class="lb-stats">
-      <div class="stat-card">
-        <div class="stat-num" id="stat-total">0</div>
-        <div class="stat-label">PESERTA</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-num" id="stat-top">—</div>
-        <div class="stat-label">TOP SCORE</div>
-      </div>
-    </div>
-    <div class="lb-search">
-      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <circle cx="11" cy="11" r="8" />
-        <path d="M21 21l-4.35-4.35" />
-      </svg>
-      <input type="text" id="search-input" placeholder="CARI NAMA / SEKOLAH…" oninput="renderLeaderboard()">
     </div>
     <div class="lb-table-wrap">
       <div class="lb-table-head">
@@ -566,6 +559,21 @@
   <script>
     let users = [];
     let prevRanks = {};
+    let scoreChanges = {};
+    let prevScores = {};
+    let schoolVisible = true;
+    const changeExpiry = {};
+
+    function clearChange(id) {
+      scoreChanges[id] = 0;
+      delete changeExpiry[id];
+      const row = document.querySelector(`.lb-row[data-uid="${id}"]`);
+      if (row) { const b = row.querySelector('.change-badge'); if (b) { b.className = 'change-badge same'; b.textContent = '●'; } }
+    }
+    function scheduleExpiry(id) {
+      if (changeExpiry[id]) clearTimeout(changeExpiry[id]);
+      changeExpiry[id] = setTimeout(() => clearChange(id), 5000);
+    }
 
     function getSorted() { return [...users].sort((a, b) => b.score - a.score); }
 
@@ -587,15 +595,38 @@
       }
     }
 
+    function toggleSchool() {
+      schoolVisible = !schoolVisible;
+      const btn = document.getElementById('school-toggle');
+      btn.textContent = `SEKOLAH: ${schoolVisible ? 'ON' : 'OFF'}`;
+      btn.classList.toggle('off', !schoolVisible);
+      applySchoolVisibility();
+    }
+
+    function applySchoolVisibility() {
+      const mobile = window.innerWidth <= 640;
+      // desktop col
+      document.querySelectorAll('.col-school').forEach(el => {
+        el.style.display = (!schoolVisible || mobile) ? 'none' : '';
+      });
+      // mobile sub
+      document.querySelectorAll('.col-school-sub').forEach(el => {
+        el.style.display = (schoolVisible && mobile) ? 'block' : 'none';
+      });
+      // header col
+      const head = document.querySelector('.lb-table-head');
+      if (head) head.style.gridTemplateColumns = schoolVisible ? '48px 1fr 1fr 80px 72px' : '48px 1fr 80px 72px';
+      document.querySelectorAll('.lb-row').forEach(el => {
+        el.style.gridTemplateColumns = schoolVisible ? '48px 1fr 1fr 80px 72px' : '48px 1fr 80px 72px';
+      });
+    }
+
     function renderLeaderboard() {
       const q = (document.getElementById('search-input')?.value || '').toLowerCase();
       const sorted = getSorted();
       const filtered = q ? sorted.filter(u =>
         u.name.toLowerCase().includes(q) || (u.school || '').toLowerCase().includes(q)
       ) : sorted;
-
-      document.getElementById('stat-total').textContent = users.length;
-      document.getElementById('stat-top').textContent = sorted[0]?.score ?? '—';
 
       const container = document.getElementById('lb-rows');
       if (!filtered.length) {
@@ -613,12 +644,12 @@
 
       container.innerHTML = filtered.map(u => {
         const rank = newRanks[u.id];
-        const oldRank = prevRanks[u.id];
-        let cb = `<span class="change-badge same">●</span>`;
-        if (oldRank !== undefined && oldRank !== rank) {
-          const d = oldRank - rank;
-          cb = d > 0 ? `<span class="change-badge up">▲+${d}</span>` : `<span class="change-badge down">▼${d}</span>`;
-        }
+        const delta = scoreChanges[u.id] || 0;
+        let cb;
+        if (delta > 0) cb = `<span class="change-badge up">▲+${delta}</span>`;
+        else if (delta < 0) cb = `<span class="change-badge down">▼${delta}</span>`;
+        else cb = `<span class="change-badge same">●</span>`;
+
         return `
     <div class="lb-row" data-uid="${u.id}">
       <div class="row-num">${rank}</div>
@@ -659,15 +690,12 @@
       });
 
       prevRanks = { ...newRanks };
+      applySchoolVisibility();
       document.getElementById('last-update').textContent = `LAST UPDATE: ${new Date().toLocaleTimeString('id-ID')}`;
     }
 
-    function applyMobileSchool() {
-      const mobile = window.innerWidth <= 640;
-      document.querySelectorAll('.col-school').forEach(el => el.style.display = mobile ? 'none' : '');
-      document.querySelectorAll('.col-school-sub').forEach(el => el.style.display = mobile ? 'block' : 'none');
-    }
-    window.addEventListener('resize', applyMobileSchool);
+    function applyMobileSchool() { applySchoolVisibility(); }
+    window.addEventListener('resize', applySchoolVisibility);
 
     function escHtml(s) {
       return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
@@ -677,11 +705,20 @@
     async function poll() {
       const fresh = await fetchUsers();
       if (fresh && JSON.stringify(fresh) !== JSON.stringify(users)) {
+        // Compute score deltas vs last known scores
+        fresh.forEach(u => {
+          if (prevScores[u.id] !== undefined && u.score !== prevScores[u.id]) {
+            scoreChanges[u.id] = (scoreChanges[u.id] || 0) + (u.score - prevScores[u.id]);
+            scheduleExpiry(u.id);
+          }
+        });
+        // Track prev ranks for FLIP
         const sortedBefore = getSorted();
         sortedBefore.forEach((u, i) => { prevRanks[u.id] = i + 1; });
+        // Update prevScores
+        fresh.forEach(u => { prevScores[u.id] = u.score; });
         users = fresh;
         renderLeaderboard();
-        applyMobileSchool();
       }
     }
 
@@ -695,7 +732,17 @@
     }
 
     // Init
-    poll().then(() => { applyMobileSchool(); setInterval(poll, 3000); });
+    async function init() {
+      const fresh = await fetchUsers();
+      if (fresh) {
+        fresh.forEach(u => { prevScores[u.id] = u.score; });
+        users = fresh;
+        renderLeaderboard();
+      }
+      applySchoolVisibility();
+      setInterval(poll, 3000);
+    }
+    init();
   </script>
 </body>
 
